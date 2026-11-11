@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<!-- =====================================================================
+  VIDRO NOVO · PÁGINA DE VENDAS (arquivo único)
+
+  O QUE VOCÊ PRECISA EDITAR (procure por "EDITAR" neste arquivo):
+  1. LINKS DE CHECKOUT ..... {{LINK_CHECKOUT_GUIA}} e {{LINK_CHECKOUT_GUIA_MAIS_BUMP}}
+                             (ficam no botão com id="btn-checkout", na seção da oferta)
+  2. FOTOS REAIS ........... seção "Antes e depois" (tags <img> comentadas)
+  3. RODAPÉ ................ {{LINK_POLITICA_PRIVACIDADE}}, {{LINK_TERMOS_DE_USO}},
+                             {{EMAIL_CONTATO}}, {{RAZAO_SOCIAL}}, {{CNPJ}}
+  4. META / OPEN GRAPH ..... {{URL_DA_PAGINA}} e {{URL_IMAGEM_OG}} (logo abaixo)
+  5. PIXEL DO META ......... bloco comentado antes de </head> e nota de CAPI no final
+  6. DEPOIMENTOS ........... bloco comentado antes da oferta (ativar só com depoimentos reais)
+====================================================================== -->
+
+<title>Vidro Novo · Guia Completo de Polimento de Vidros Automotivos</title>
+<meta name="description" content="Aprenda o processo completo de polimento de vidros de carro: diagnóstico, segurança, 9 etapas e plano de treino de 7 dias. Guia digital em PDF por R$ 14,90, com garantia de 7 dias.">
+<meta name="theme-color" content="#0B2A3F">
+
+<!-- EDITAR (opcional): descomente a linha abaixo para a página NÃO aparecer no Google -->
+<!-- <meta name="robots" content="noindex, nofollow"> -->
+
+<!-- EDITAR: Open Graph (prévia ao compartilhar o link). Troque os dois placeholders. -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Vidro Novo · Guia Completo de Polimento de Vidros Automotivos">
+<meta property="og:description" content="O passo a passo do polimento de vidros de carro, com segurança, checklist e plano de treino de 7 dias. Material digital educativo.">
+<meta property="og:url" content="{{URL_DA_PAGINA}}">
+<meta property="og:image" content="{{URL_IMAGEM_OG}}">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230B2A3F'/%3E%3Cpath d='M6 21a10 10 0 0 1 20 0' fill='none' stroke='%233CC8E8' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M16 25l6-12' stroke='%23E8F8FD' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --navy:#0B2A3F; --deep:#071B29; --mid:#0E3A55;
+  --cyan:#3CC8E8; --ice:#E8F8FD; --amber:#F0A020;
+  --text:#FFFFFF; --muted:#B7CAD6;
+  --line:rgba(232,248,253,.14); --line-2:rgba(232,248,253,.26);
+  --glass:rgba(232,248,253,.055); --glass-2:rgba(232,248,253,.09);
+  --r-sm:12px; --r:16px; --r-lg:24px;
+  --glow:0 18px 44px -16px rgba(60,200,232,.55);
+  --shadow:0 28px 60px -30px rgba(0,0,0,.7);
+  --font-d:"Sora","Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-b:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --pad:20px;
+}
+
+/* ============ BASE ============ */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  margin:0; background:var(--navy); color:var(--text);
+  font-family:var(--font-b); font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,p,ul,ol,figure{margin:0}
+ul,ol{padding:0; list-style:none}
+a{color:var(--cyan)}
+svg{display:block}
+strong{font-weight:600; color:var(--text)}
+:focus-visible{outline:3px solid var(--ice); outline-offset:3px; border-radius:6px}
+.sr-only{position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0}
+.i{width:24px; height:24px; flex:none; fill:none; stroke:currentColor; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round}
+.nw{white-space:nowrap}
+
+.wrap{width:100%; max-width:1160px; margin-inline:auto; padding-inline:var(--pad)}
+.wrap--wide{max-width:1280px}
+.wrap--narrow{max-width:800px}
+
+.sec{position:relative; padding-block:64px; scroll-margin-top:12px}
+.sec--deep{background:var(--deep); border-block:1px solid var(--line)}
+.sec-head{max-width:700px; margin-bottom:32px}
+.sec-head--center{margin-inline:auto; text-align:center}
+.eyebrow{
+  display:inline-flex; align-items:center; gap:8px; margin-bottom:14px;
+  font:600 13px/1.3 var(--font-b); letter-spacing:.09em; text-transform:uppercase; color:var(--cyan);
+}
+.eyebrow::before{content:""; width:22px; height:1px; background:currentColor; opacity:.7}
+h1,h2,h3{font-family:var(--font-d); letter-spacing:-.025em; text-wrap:balance}
+h1{font-weight:800; font-size:clamp(2rem,1.35rem + 3.1vw,3.4rem); line-height:1.1}
+h2{font-weight:700; font-size:clamp(1.625rem,1.2rem + 1.9vw,2.5rem); line-height:1.15}
+h3{font-weight:700; font-size:1.125rem; line-height:1.3; letter-spacing:-.015em}
+.lead{margin-top:14px; color:var(--muted); font-size:1.0625rem}
+.muted{color:var(--muted)}
+.sec-foot{margin-top:32px; color:var(--muted)}
+.sec-foot--center{text-align:center}
+.tlink{
+  display:inline-flex; align-items:center; gap:8px; min-height:48px;
+  font-weight:600; color:var(--cyan); text-decoration:none;
+}
+.tlink .i{width:20px; height:20px; transition:transform .25s ease}
+.tlink:hover .i{transform:translateX(4px)}
+.tlink:hover{text-decoration:underline; text-underline-offset:4px}
+
+/* Superfície de vidro */
+.glass{
+  background:linear-gradient(180deg,var(--glass-2),var(--glass));
+  border:1px solid var(--line); border-radius:var(--r-lg);
+  box-shadow:inset 0 1px 0 rgba(232,248,253,.12), var(--shadow);
+}
+
+/* Botões */
+.btn{
+  position:relative; display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  min-height:56px; padding:14px 26px; border:0; border-radius:16px; cursor:pointer; overflow:hidden;
+  font:700 1.0625rem/1.25 var(--font-d); letter-spacing:-.01em; text-align:center; text-decoration:none;
+  color:#04202E; background:linear-gradient(180deg,#6FDCF4,var(--cyan));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55), var(--glow);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.btn::after{ /* reflexo que passa pelo botão */
+  content:""; position:absolute; top:0; bottom:0; left:0; width:38%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);
+  transform:translateX(-140%) skewX(-18deg); pointer-events:none;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:hover::after{transform:translateX(330%) skewX(-18deg); transition:transform .8s ease}
+.btn:active{transform:translateY(0) scale(.985)}
+.btn--block{display:flex; width:100%}
+.btn--lg{min-height:64px; font-size:1.125rem; padding:16px 22px}
+.btn .i{width:22px; height:22px; stroke-width:2.2}
+.micro{margin-top:12px; font-size:.9375rem; color:var(--muted)}
+
+/* Revelação ao rolar (só quando há JS) */
+.js .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); transition-delay:var(--d,0ms)}
+.js .reveal.is-in{opacity:1; transform:none}
+
+/* ============ 1. BARRA DE TOPO ============ */
+.topbar{
+  display:flex; flex-wrap:wrap; justify-content:center; row-gap:2px;
+  background:var(--deep); border-bottom:1px solid var(--line);
+  padding:8px var(--pad); text-align:center; font-size:.8125rem; line-height:1.45; color:var(--muted);
+}
+.topbar span{white-space:nowrap}
+.topbar i{font-style:normal; color:var(--cyan); margin-inline:6px}
+
+/* ============ 2. HERO ============ */
+.hero{
+  position:relative; overflow:hidden; padding:20px 0 56px;
+  background:
+    radial-gradient(120% 70% at 85% 0%,rgba(14,58,85,.95),transparent 62%),
+    radial-gradient(90% 60% at 0% 100%,rgba(60,200,232,.10),transparent 60%),
+    linear-gradient(180deg,var(--deep),var(--navy));
+}
+.hero-beam{ /* brilho de luz que cruza a tela */
+  position:absolute; top:-20%; bottom:-20%; left:0; width:34%; pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(232,248,253,.085) 45%,rgba(60,200,232,.07) 55%,transparent);
+  transform:translateX(-140%) skewX(-16deg); animation:beam 13s linear infinite; will-change:transform;
+}
+@keyframes beam{0%{transform:translateX(-140%) skewX(-16deg)} 70%,100%{transform:translateX(440%) skewX(-16deg)}}
+.brand{display:inline-flex; align-items:center; gap:10px; min-height:44px; font:700 1.0625rem var(--font-d); letter-spacing:-.02em; color:var(--text)}
+.brand-mark{width:32px; height:32px; border-radius:10px; display:grid; place-items:center; background:rgba(60,200,232,.12); border:1px solid rgba(60,200,232,.4)}
+.brand-mark svg{width:20px; height:20px}
+.hero-grid{position:relative; display:grid; gap:44px; margin-top:18px}
+.hero h1 em{font-style:normal; color:var(--cyan)}
+.hero .lead{font-size:1.0625rem; max-width:34em}
+.ticks{margin-top:20px; display:grid; gap:10px}
+.ticks li{display:flex; gap:12px; align-items:flex-start; font-weight:500}
+.ticks .i{width:22px; height:22px; margin-top:2px; color:var(--cyan); stroke-width:2.4}
+.hero-cta{margin-top:26px}
+.hero-cta .btn{width:100%}
+
+.hero-art{position:relative; width:100%; max-width:560px; margin-inline:auto; padding-bottom:14%}
+.hero-art .ws{width:100%; height:auto; overflow:visible; filter:drop-shadow(0 30px 40px rgba(0,0,0,.45))}
+.ws-sheen{animation:sheen 8.5s ease-in-out infinite; will-change:transform}
+@keyframes sheen{0%,12%{transform:translateX(0)} 62%,100%{transform:translateX(980px)}}
+.ws-spark{transform-box:fill-box; transform-origin:center; animation:twinkle 4.2s ease-in-out infinite}
+.ws-spark:nth-of-type(2){animation-delay:1.3s}
+.ws-spark:nth-of-type(3){animation-delay:2.6s}
+@keyframes twinkle{0%,100%{opacity:.15; transform:scale(.7)} 50%{opacity:1; transform:scale(1)}}
+.hero-art .hero-cover{position:absolute; right:3%; bottom:0; width:30%; min-width:96px; transform:rotate(6deg); font-size:7.2px}
+.hero-chip{
+  position:absolute; left:2%; bottom:5%; display:inline-flex; align-items:center; gap:8px;
+  padding:10px 14px; border-radius:999px; font-size:.875rem; font-weight:600; color:var(--ice);
+  background:rgba(7,27,41,.72); border:1px solid var(--line-2);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+}
+.hero-chip .i{width:18px; height:18px; color:var(--cyan)}
+
+/* Capa do guia (mockup em CSS) */
+.cover{
+  position:relative; aspect-ratio:210/297; overflow:hidden; display:flex; flex-direction:column;
+  padding:1.7em 1.5em; border-radius:10px; color:#fff; font-size:10px;
+  background:linear-gradient(155deg,#12506F 0%,#0B2A3F 42%,#071B29 100%);
+  border:1px solid rgba(232,248,253,.28);
+  box-shadow:0 22px 40px -14px rgba(0,0,0,.7), 0 0 0 1px rgba(60,200,232,.12), 0 0 46px -12px rgba(60,200,232,.5);
+}
+.cover::before{ /* arco da palheta */
+  content:""; position:absolute; left:-30%; top:47%; width:160%; aspect-ratio:1; border-radius:50%;
+  border:2px solid rgba(60,200,232,.85); box-shadow:0 0 0 .9em rgba(60,200,232,.09), inset 0 0 2.4em rgba(60,200,232,.22);
+}
+.cover::after{ /* reflexo */
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(115deg,transparent 30%,rgba(232,248,253,.16) 46%,transparent 58%);
+}
+.cover-tag{position:relative; font:600 .72em/1.2 var(--font-b); letter-spacing:.14em; text-transform:uppercase; color:var(--cyan)}
+.cover-title{position:relative; margin-top:.5em; font:800 2em/1.02 var(--font-d); letter-spacing:-.03em}
+.cover-sub{position:relative; margin-top:.6em; font:500 .82em/1.3 var(--font-b); color:var(--ice); opacity:.9}
+.cover-foot{position:relative; z-index:1; margin-top:auto; font:600 .7em/1.2 var(--font-b); letter-spacing:.06em; color:var(--ice)}
+
+/* Números */
+.stats{position:relative; margin-top:44px; display:grid; grid-template-columns:1fr 1fr; overflow:hidden}
+.stat{padding:18px 16px; border-right:1px solid var(--line); border-bottom:1px solid var(--line)}
+.stat:nth-child(2n){border-right:0}
+.stat:nth-last-child(-n+2){border-bottom:0}
+.stat b{display:block; font:800 2rem/1 var(--font-d); letter-spacing:-.03em; color:var(--ice); font-variant-numeric:tabular-nums}
+.stat span{display:block; margin-top:6px; font-size:.9375rem; line-height:1.35; color:var(--muted)}
+
+/* ============ 3. PROBLEMA ============ */
+.pains{display:grid; gap:12px}
+.pain{display:grid; grid-template-columns:48px 1fr; gap:14px; padding:18px; border-radius:var(--r); background:var(--glass); border:1px solid var(--line)}
+.pain-ic{width:48px; height:48px; border-radius:14px; display:grid; place-items:center; color:var(--cyan); background:rgba(60,200,232,.1); border:1px solid rgba(60,200,232,.28)}
+.pain p{margin-top:4px; color:var(--muted)}
+
+/* ============ 4. ANTES E DEPOIS ============ */
+.ba{
+  position:relative; aspect-ratio:4/3; overflow:hidden; border-radius:var(--r-lg);
+  border:1px solid var(--line-2); background:var(--deep);
+  box-shadow:var(--shadow), 0 0 70px -30px rgba(60,200,232,.6);
+  touch-action:pan-y; -webkit-user-select:none; user-select:none; cursor:ew-resize;
+}
+.ba-layer{position:absolute; inset:0}
+.ba-layer svg, .ba-photo{position:absolute; inset:0; width:100%; height:100%}
+.ba-photo{object-fit:cover; -webkit-user-drag:none}
+.ba-before{clip-path:inset(0 50% 0 0); -webkit-clip-path:inset(0 50% 0 0); will-change:clip-path}
+.ba-tag{
+  position:absolute; top:14px; z-index:2; padding:7px 12px; border-radius:999px; pointer-events:none;
+  font:600 .8125rem/1 var(--font-b); letter-spacing:.06em; text-transform:uppercase;
+  background:rgba(7,27,41,.78); border:1px solid var(--line-2); color:var(--ice);
+}
+.ba-tag--a{left:14px}
+.ba-tag--d{right:14px; color:#04202E; background:var(--cyan); border-color:transparent}
+.ba-handle{position:absolute; top:0; bottom:0; left:0; width:0; z-index:3; pointer-events:none; transform:translate3d(0,0,0); will-change:transform}
+.ba-handle::before{content:""; position:absolute; top:0; bottom:0; left:-1px; width:2px; background:var(--ice); box-shadow:0 0 14px rgba(60,200,232,.9)}
+.ba-knob{
+  position:absolute; top:50%; left:-26px; width:52px; height:52px; margin-top:-26px; border-radius:50%;
+  display:grid; place-items:center; color:#04202E; background:linear-gradient(180deg,#fff,var(--ice));
+  box-shadow:0 8px 22px rgba(0,0,0,.5), 0 0 0 5px rgba(60,200,232,.3);
+}
+.ba-knob svg{width:26px; height:26px; fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round}
+.ba-range{position:absolute; left:0; bottom:0; width:100%; height:1px; margin:0; opacity:0; pointer-events:none}
+.ba-range:focus-visible ~ .ba-handle .ba-knob{outline:3px solid var(--cyan); outline-offset:4px}
+.ba-cap{margin-top:14px; font-size:.9375rem; color:var(--muted); text-align:center}
+.ba-hint{display:flex; align-items:center; justify-content:center; gap:8px; margin-top:16px; font-weight:600; color:var(--ice)}
+.ba-hint .i{width:20px; height:20px; color:var(--cyan)}
+
+/* ============ 5. MÉTODO (linha do tempo) ============ */
+.steps{display:grid}
+.step{position:relative; display:grid; grid-template-columns:48px 1fr; gap:16px; padding-bottom:26px}
+.step::before{content:""; position:absolute; left:23.5px; top:52px; bottom:4px; width:1px; background:linear-gradient(rgba(60,200,232,.55),var(--line))}
+.step:last-child{padding-bottom:0}
+.step:last-child::before{display:none}
+.step-n{
+  width:48px; height:48px; border-radius:50%; display:grid; place-items:center;
+  font:700 1.125rem/1 var(--font-d); color:var(--cyan);
+  background:rgba(60,200,232,.1); border:1px solid rgba(60,200,232,.5); box-shadow:0 0 0 6px rgba(60,200,232,.06);
+}
+.step h3{padding-top:10px}
+.step p{margin-top:4px; color:var(--muted)}
+
+/* ============ 6. RESOLVE / NÃO RESOLVE ============ */
+.duo{display:grid; gap:16px}
+.panel{padding:24px 20px}
+.panel-top{display:flex; align-items:center; gap:12px; margin-bottom:16px}
+.badge-ic{width:44px; height:44px; border-radius:50%; display:grid; place-items:center; flex:none}
+.badge-ic .i{stroke-width:2.4}
+.badge-ic--ok{color:#04202E; background:var(--cyan)}
+.badge-ic--no{color:var(--ice); background:rgba(232,248,253,.1); border:1px solid var(--line-2)}
+.rows li{display:grid; grid-template-columns:24px 1fr; gap:12px; padding:13px 0; border-top:1px solid var(--line)}
+.rows .i{margin-top:1px; width:22px; height:22px; stroke-width:2.2}
+.rows--ok .i{color:var(--cyan)}
+.rows--no .i{color:var(--muted)}
+.rows b{display:block; font-weight:600}
+.rows span{display:block; color:var(--muted); font-size:.9688rem}
+.panel-note{margin-top:14px; padding-top:14px; border-top:1px solid var(--line); color:var(--muted); font-size:.9688rem}
+
+/* ============ 7. SEGURANÇA ============ */
+.safety{display:grid; gap:28px}
+.safe-list{display:grid; gap:0}
+.safe{display:grid; grid-template-columns:48px 1fr; gap:14px; padding:16px 0; border-top:1px solid var(--line)}
+.safe:last-child{border-bottom:1px solid var(--line)}
+.safe-ic{width:48px; height:48px; border-radius:14px; display:grid; place-items:center; color:var(--ice); background:var(--glass-2); border:1px solid var(--line-2)}
+.safe p{margin-top:3px; color:var(--muted)}
+.warn{
+  display:grid; grid-template-columns:28px 1fr; gap:12px; margin-top:22px; padding:16px;
+  border-radius:var(--r); background:rgba(240,160,32,.09); border:1px solid rgba(240,160,32,.5);
+}
+.warn .i{color:var(--amber); width:26px; height:26px}
+.warn p{color:#F6E4C4}
+.warn b{color:var(--amber); font-weight:600}
+.shield-card{padding:26px 22px; text-align:center}
+.shield-big{width:84px; height:84px; margin:0 auto 14px; border-radius:50%; display:grid; place-items:center; color:var(--cyan); background:radial-gradient(circle,rgba(60,200,232,.22),rgba(60,200,232,.04)); border:1px solid rgba(60,200,232,.45)}
+.shield-big .i{width:40px; height:40px}
+.shield-card p{margin-top:8px; color:var(--muted)}
+
+/* ============ 8. O QUE VOCÊ RECEBE ============ */
+.group-label{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin:28px 0 14px; font:700 1rem var(--font-d); letter-spacing:-.01em}
+.group-label:first-of-type{margin-top:0}
+.pill{display:inline-flex; align-items:center; min-height:30px; padding:4px 12px; border-radius:999px; font:600 .8125rem/1.2 var(--font-b); letter-spacing:.02em}
+.pill--in{color:#04202E; background:var(--cyan)}
+.pill--bump{color:var(--ice); background:rgba(232,248,253,.08); border:1px dashed rgba(232,248,253,.45)}
+.cards{display:grid; gap:14px}
+.card{display:flex; flex-direction:column; overflow:hidden; border-radius:var(--r-lg); background:linear-gradient(180deg,var(--glass-2),var(--glass)); border:1px solid var(--line)}
+.card-art{
+  position:relative; height:212px; display:grid; place-items:center; overflow:hidden;
+  background:radial-gradient(80% 90% at 50% 0%,rgba(60,200,232,.16),transparent 70%), var(--deep);
+  border-bottom:1px solid var(--line);
+}
+.card-body{padding:20px}
+.card-body p{margin-top:6px; color:var(--muted)}
+.card-fmt{display:inline-block; margin-bottom:8px; font:600 .8125rem/1 var(--font-b); letter-spacing:.08em; text-transform:uppercase; color:var(--cyan)}
+
+/* Mockup: guia em leque */
+.fan{position:relative; width:118px; height:167px}
+.fan .page,.fan .cover{position:absolute; inset:0}
+.page{border-radius:8px; background:linear-gradient(180deg,#F4FBFE,#DCEFF6); border:1px solid rgba(7,27,41,.15); padding:13px 11px; box-shadow:0 12px 24px -10px rgba(0,0,0,.6)}
+.page i{display:block; height:4px; margin-bottom:6px; border-radius:2px; background:rgba(11,42,63,.2)}
+.page i:first-child{width:62%; height:6px; margin-bottom:10px; background:#0E3A55}
+.page i:nth-child(3n){width:78%}
+.page em{display:block; height:30px; margin:8px 0; border-radius:4px; background:rgba(60,200,232,.35)}
+.fan .page:nth-child(1){transform:translate(62px,4px) rotate(13deg)}
+.fan .page:nth-child(2){transform:translate(32px,0) rotate(6deg)}
+.fan .page:nth-child(3){transform:translate(-58px,6px) rotate(-11deg)}
+.fan .cover{transform:rotate(-2deg); font-size:7.2px}
+
+/* Mockup: plano de 7 dias */
+.week{display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:6px; width:min(86%,300px)}
+.week span{aspect-ratio:3/5; border-radius:9px; display:flex; flex-direction:column; align-items:center; justify-content:space-between; padding:8px 0; background:rgba(232,248,253,.07); border:1px solid var(--line-2); font:600 .625rem/1 var(--font-b); letter-spacing:.06em; color:var(--muted)}
+.week b{font:800 1.0625rem/1 var(--font-d); color:var(--ice)}
+.week i{width:14px; height:14px; border-radius:50%; border:1.5px solid rgba(232,248,253,.4)}
+.week .done{background:rgba(60,200,232,.14); border-color:rgba(60,200,232,.55)}
+.week .done i{background:var(--cyan); border-color:var(--cyan)}
+
+/* Mockup: janela da planilha */
+.sheet{width:min(88%,320px); border-radius:12px; overflow:hidden; background:#F4FBFE; color:#0B2A3F; box-shadow:0 18px 34px -14px rgba(0,0,0,.7); font:500 .6875rem/1 var(--font-b)}
+.sheet-bar{display:flex; align-items:center; gap:5px; padding:8px 10px; background:#0E3A55; color:var(--ice); font-weight:600}
+.sheet-bar i{width:7px; height:7px; border-radius:50%; background:rgba(232,248,253,.45)}
+.sheet-bar span{margin-left:6px}
+.sheet-row{display:grid; grid-template-columns:1.5fr 1fr; border-bottom:1px solid rgba(11,42,63,.1)}
+.sheet-row span{padding:7px 10px; border-right:1px solid rgba(11,42,63,.1)}
+.sheet-row b{align-self:center; height:6px; margin:0 10px; border-radius:3px; background:rgba(11,42,63,.18)}
+.sheet-row:nth-child(2n) b{width:46%}
+.sheet-head{background:#DCEFF6; font-weight:600; letter-spacing:.04em; text-transform:uppercase; font-size:.625rem}
+.sheet-head span:last-child{border-right:0}
+.sheet-total{background:rgba(60,200,232,.28); font-weight:600}
+.sheet-total b{background:#0E3A55; height:8px}
+.sheet-tabs{display:flex; gap:2px; padding:5px 6px 0; background:#DCEFF6}
+.sheet-tabs span{padding:6px 8px; border-radius:6px 6px 0 0; color:#3F6072}
+.sheet-tabs .on{background:#F4FBFE; color:#0B2A3F; font-weight:600; box-shadow:inset 0 2px 0 var(--cyan)}
+
+/* Mockup: kit de atendimento e guia de compra */
+.docs{position:relative; width:150px; height:160px}
+.doc{position:absolute; width:104px; height:142px; border-radius:8px; padding:12px 10px; background:linear-gradient(180deg,#F4FBFE,#DCEFF6); border:1px solid rgba(7,27,41,.15); box-shadow:0 12px 24px -10px rgba(0,0,0,.6)}
+.doc:nth-child(1){left:0; top:14px; transform:rotate(-8deg)}
+.doc:nth-child(2){right:0; top:4px; transform:rotate(6deg)}
+.doc u{display:block; width:58%; height:6px; margin-bottom:10px; border-radius:2px; background:#0E3A55}
+.doc i{display:flex; align-items:center; gap:6px; margin-bottom:8px}
+.doc i::before{content:""; width:9px; height:9px; border-radius:2.5px; border:1.5px solid #0E3A55; flex:none}
+.doc i::after{content:""; height:4px; flex:1; border-radius:2px; background:rgba(11,42,63,.22)}
+.doc i.ok::before{background:var(--cyan); border-color:#0E3A55}
+.doc s{display:block; height:1.5px; margin-top:22px; background:#0E3A55; width:70%}
+.doc small{display:block; margin-top:4px; width:40%; height:3px; border-radius:2px; background:rgba(11,42,63,.25)}
+.buy{width:min(80%,240px); padding:14px; border-radius:12px; background:rgba(232,248,253,.07); border:1px solid var(--line-2)}
+.buy-top{display:flex; align-items:center; gap:8px; margin-bottom:10px; font:600 .75rem/1 var(--font-b); letter-spacing:.06em; text-transform:uppercase; color:var(--ice)}
+.buy-top .i{width:18px; height:18px; color:var(--cyan)}
+.buy i{display:flex; align-items:center; gap:10px; padding:8px 0; border-top:1px solid var(--line)}
+.buy i::before{content:""; width:12px; height:12px; border-radius:4px; border:1.5px solid var(--cyan); flex:none}
+.buy i::after{content:""; height:5px; border-radius:3px; background:rgba(232,248,253,.3); width:var(--w,70%)}
+
+/* ============ 9. SIMULADOR ============ */
+.sim{display:grid; gap:0; overflow:hidden}
+.sim-form{padding:22px 18px; display:grid; grid-template-columns:1fr 1fr; gap:14px}
+.field label{display:block; margin-bottom:6px; font-size:.9375rem; font-weight:500; color:var(--ice); line-height:1.3}
+.field-box{position:relative}
+.field-box input{
+  width:100%; min-height:52px; padding:12px 12px 12px 44px; border-radius:var(--r-sm);
+  font:600 1.0625rem/1.2 var(--font-b); color:var(--text); font-variant-numeric:tabular-nums;
+  background:rgba(7,27,41,.6); border:1px solid var(--line-2); -webkit-appearance:none; appearance:none;
+}
+.field-box input:focus{outline:none; border-color:var(--cyan); box-shadow:0 0 0 3px rgba(60,200,232,.3)}
+.field-box input[aria-invalid="true"]{border-color:var(--amber); box-shadow:0 0 0 3px rgba(240,160,32,.25)}
+.field-box span{position:absolute; left:13px; top:50%; transform:translateY(-50%); font-size:.9375rem; font-weight:600; color:var(--muted); pointer-events:none}
+.field--suffix input{padding:12px 40px 12px 14px}
+.field--suffix span{left:auto; right:14px}
+.sim-out{padding:22px 18px; background:rgba(7,27,41,.55); border-top:1px solid var(--line)}
+.sim-label{font-size:.9375rem; color:var(--muted)}
+.sim-price{margin-top:4px; font:800 clamp(2.25rem,1.6rem + 3vw,3rem)/1.05 var(--font-d); letter-spacing:-.03em; color:var(--cyan); font-variant-numeric:tabular-nums}
+.sim-break{margin-top:16px}
+.sim-break div{display:flex; justify-content:space-between; gap:12px; padding:10px 0; border-top:1px solid var(--line); color:var(--muted)}
+.sim-break b{color:var(--text); font-weight:600; font-variant-numeric:tabular-nums; white-space:nowrap}
+.sim-err{margin-top:12px; color:var(--amber); font-weight:500}
+.sim-formula{margin-top:14px; font-size:.875rem; line-height:1.55; color:var(--muted)}
+.sim-note{
+  display:grid; grid-template-columns:24px 1fr; gap:10px; margin-top:16px; padding:14px;
+  border-radius:var(--r-sm); background:rgba(240,160,32,.08); border:1px solid rgba(240,160,32,.45);
+  font-size:.9375rem; color:#F6E4C4;
+}
+.sim-note .i{width:22px; height:22px; color:var(--amber)}
+
+/* ============ 10. PLANO DE 7 DIAS ============ */
+.days{display:grid; gap:10px}
+.day{display:grid; grid-template-columns:64px 1fr; gap:14px; align-items:start; padding:16px; border-radius:var(--r); background:var(--glass); border:1px solid var(--line)}
+.day-n{display:grid; place-items:center; height:64px; border-radius:14px; background:rgba(60,200,232,.1); border:1px solid rgba(60,200,232,.35); font:600 .6875rem/1 var(--font-b); letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.day-n b{display:block; margin-top:4px; font:800 1.5rem/1 var(--font-d); letter-spacing:-.02em; color:var(--cyan)}
+.day p{margin-top:4px; color:var(--muted)}
+.day--last{background:linear-gradient(180deg,rgba(60,200,232,.14),rgba(60,200,232,.05)); border-color:rgba(60,200,232,.45)}
+
+/* ============ 12. OFERTA ============ */
+.offer-sec{
+  background:
+    radial-gradient(70% 50% at 50% 0%,rgba(60,200,232,.16),transparent 70%),
+    linear-gradient(180deg,var(--navy),var(--deep));
+  overflow:hidden;
+}
+.offer{
+  position:relative; max-width:980px; margin-inline:auto; padding:26px 18px; overflow:hidden;
+  background:linear-gradient(180deg,rgba(232,248,253,.12),rgba(232,248,253,.05));
+  border:1px solid var(--line-2); border-radius:var(--r-lg);
+  -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px);
+  box-shadow:inset 0 1px 0 rgba(232,248,253,.2), var(--shadow), 0 0 90px -34px rgba(60,200,232,.75);
+}
+.offer::before{content:""; position:absolute; top:0; left:10%; right:10%; height:1px; background:linear-gradient(90deg,transparent,var(--cyan),transparent)}
+.offer-grid{display:grid; gap:26px}
+.offer-name{font:700 1.25rem/1.25 var(--font-d); letter-spacing:-.02em}
+.offer-launch{display:inline-flex; margin-top:16px}
+.price{display:flex; align-items:flex-start; gap:6px; margin-top:8px; font-family:var(--font-d); font-weight:800; letter-spacing:-.04em; color:var(--text)}
+.price small{margin-top:10px; font-size:1.375rem; letter-spacing:-.01em; color:var(--ice)}
+.price b{font-size:clamp(3.75rem,2.8rem + 5vw,5rem); line-height:.95; font-weight:800}
+.price sup{margin-top:8px; font-size:1.75rem; line-height:1}
+.price-note{margin-top:6px; color:var(--muted)}
+.incl{margin-top:20px}
+.incl li{display:grid; grid-template-columns:22px 1fr; gap:12px; padding:9px 0}
+.incl .i{width:22px; height:22px; margin-top:2px; color:var(--cyan); stroke-width:2.4}
+
+.bump{
+  display:grid; grid-template-columns:32px 1fr; gap:14px; padding:16px; cursor:pointer;
+  border-radius:var(--r); background:rgba(7,27,41,.55); border:2px dashed rgba(60,200,232,.6);
+  transition:background-color .2s ease, border-color .2s ease;
+}
+.bump.is-on{background:rgba(60,200,232,.13); border-style:solid; border-color:var(--cyan)}
+.bump input{position:absolute; opacity:0; width:32px; height:32px; margin:0; cursor:pointer}
+.bump-box{width:32px; height:32px; border-radius:9px; display:grid; place-items:center; background:rgba(232,248,253,.08); border:2px solid var(--ice)}
+.bump-box .i{width:22px; height:22px; stroke-width:3; color:#04202E; opacity:0; transform:scale(.6); transition:opacity .15s ease, transform .15s ease}
+.bump input:checked + .bump-box{background:var(--cyan); border-color:var(--cyan)}
+.bump input:checked + .bump-box .i{opacity:1; transform:none}
+.bump input:focus-visible + .bump-box{outline:3px solid var(--ice); outline-offset:3px}
+.bump-title{display:block; font:700 1.0625rem/1.3 var(--font-d); letter-spacing:-.015em}
+.bump-title em{font-style:normal; color:var(--cyan); white-space:nowrap}
+.bump-text{display:block; margin-top:6px; color:var(--muted); font-size:.9688rem}
+.bump-mini{display:flex; align-items:center; gap:10px; margin-top:12px}
+.mini-sheet{width:58px; border-radius:6px; overflow:hidden; background:#F4FBFE}
+.mini-sheet i{display:block; height:9px; background:#0E3A55}
+.mini-sheet b{display:block; height:7px; border-bottom:1px solid rgba(11,42,63,.14); background:linear-gradient(90deg,transparent 58%,rgba(11,42,63,.14) 58%,rgba(11,42,63,.14) 60%,transparent 60%)}
+.mini-sheet b:last-child{background:rgba(60,200,232,.45)}
+.mini-doc{width:34px; height:44px; border-radius:5px; padding:6px 5px; background:#F4FBFE}
+.mini-doc i{display:block; height:3px; margin-bottom:4px; border-radius:2px; background:rgba(11,42,63,.3)}
+.mini-doc i:first-child{width:60%; background:#0E3A55}
+.bump-mini span{font-size:.875rem; color:var(--ice); font-weight:500}
+.total{display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin:18px 0 14px; padding-top:16px; border-top:1px solid var(--line)}
+.total span{color:var(--muted)}
+.total b{font:800 1.5rem/1 var(--font-d); letter-spacing:-.02em; font-variant-numeric:tabular-nums}
+.offer .micro{text-align:center}
+.seals{display:grid; gap:10px; margin-top:18px}
+.seal{display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:var(--r-sm); background:rgba(7,27,41,.45); border:1px solid var(--line); font-size:.9375rem; font-weight:500; color:var(--ice)}
+.seal .i{width:22px; height:22px; color:var(--cyan)}
+
+/* ============ 13. GARANTIA ============ */
+.guar{display:grid; gap:22px; padding:26px 20px; align-items:center}
+.guar-seal{
+  position:relative; width:128px; height:128px; margin-inline:auto; border-radius:50%; display:grid; place-items:center; text-align:center;
+  background:radial-gradient(circle at 30% 25%,rgba(232,248,253,.3),rgba(60,200,232,.12) 55%,rgba(7,27,41,.6));
+  border:1px solid rgba(60,200,232,.6); box-shadow:0 0 0 8px rgba(60,200,232,.07), 0 0 50px -10px rgba(60,200,232,.6);
+}
+.guar-seal::before{content:""; position:absolute; inset:9px; border-radius:50%; border:1px dashed rgba(232,248,253,.5)}
+.guar-seal b{display:block; font:800 3rem/.9 var(--font-d); letter-spacing:-.04em; color:var(--text)}
+.guar-seal span{display:block; margin-top:4px; font:600 .75rem/1.2 var(--font-b); letter-spacing:.12em; text-transform:uppercase; color:var(--ice)}
+.guar p{margin-top:12px; color:var(--muted)}
+
+/* ============ 14. FAQ ============ */
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{
+  display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:64px; padding:14px 2px; cursor:pointer;
+  list-style:none; font:600 1.0625rem/1.35 var(--font-d); letter-spacing:-.015em;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .i{color:var(--cyan); transition:transform .25s ease}
+.faq details[open] summary .i{transform:rotate(180deg)}
+.faq summary:hover{color:var(--ice)}
+.faq-a{padding:0 2px 20px; color:var(--muted); max-width:62ch}
+.faq details[open] .faq-a{animation:fadein .35s ease both}
+@keyframes fadein{from{opacity:0; transform:translateY(-6px)} to{opacity:1; transform:none}}
+
+/* ============ 15. CTA FINAL + RODAPÉ ============ */
+.final{text-align:center; overflow:hidden; background:radial-gradient(60% 80% at 50% 100%,rgba(60,200,232,.18),transparent 70%), var(--navy)}
+.final .btn{margin-top:26px; width:100%; max-width:420px}
+.legal{margin-top:40px; padding:18px; border-radius:var(--r); background:rgba(7,27,41,.55); border:1px solid var(--line); text-align:left; font-size:.9375rem; color:var(--muted)}
+.legal b{color:var(--ice); font-weight:600}
+.legal p + p{margin-top:10px}
+.foot{background:var(--deep); border-top:1px solid var(--line); padding:32px 0 calc(110px + env(safe-area-inset-bottom,0px)); font-size:.9375rem; color:var(--muted)}
+.foot-nav{display:flex; flex-wrap:wrap; column-gap:22px; margin:10px 0 14px}
+.foot-nav a{display:inline-flex; align-items:center; min-height:48px; color:var(--ice); text-decoration:underline; text-decoration-color:rgba(232,248,253,.35); text-underline-offset:4px}
+.foot-nav a:hover{color:var(--cyan)}
+.foot small{display:block; font-size:.875rem; line-height:1.6}
+
+/* ============ BOTÃO FIXO (MOBILE) ============ */
+.sticky{
+  position:fixed; left:0; right:0; bottom:0; z-index:50;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));
+  background:rgba(7,27,41,.86); border-top:1px solid var(--line-2);
+  -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px);
+  transform:translateY(110%); visibility:hidden;
+  transition:transform .3s ease, visibility 0s linear .3s;
+}
+.sticky.is-on{transform:none; visibility:visible; transition:transform .3s ease, visibility 0s}
+.sticky .btn{min-height:52px; padding-block:10px}
+
+/* ============ RESPONSIVO ============ */
+@media (max-width:459px){
+  .topbar span:first-child{flex-basis:100%}
+  .topbar span:first-child + i{display:none}
+}
+@media (max-width:359px){
+  .sim-form{grid-template-columns:1fr}
+  .hero-chip{display:none}
+}
+@media (min-width:480px){ .hero-art .hero-cover{font-size:9px} }
+@media (min-width:700px){
+  :root{--pad:32px}
+  .sec{padding-block:88px}
+  .sec-head{margin-bottom:44px}
+  .lead{font-size:1.125rem}
+  .hero-cta .btn{width:auto; min-width:340px}
+  .stats{grid-template-columns:repeat(4,1fr)}
+  .stat{border-bottom:0; padding:22px}
+  .stat:nth-child(2n){border-right:1px solid var(--line)}
+  .stat:last-child{border-right:0}
+  .pains{grid-template-columns:1fr 1fr; gap:14px}
+  .steps{grid-template-columns:repeat(3,1fr); gap:26px 22px}
+  .step{padding-bottom:0}
+  .step::before{display:none}
+  .duo{grid-template-columns:1fr 1fr; gap:20px}
+  .panel{padding:30px 28px}
+  .cards{grid-template-columns:repeat(6,1fr); gap:18px}
+  .cards--in .card{grid-column:span 3}
+  .cards--bump .card{grid-column:span 2}
+  .card-art{height:236px}
+  .sim-form{padding:30px; gap:18px}
+  .sim-out{padding:30px}
+  .days{grid-template-columns:1fr 1fr; gap:14px}
+  .day--last{grid-column:1 / -1}
+  .offer{padding:40px}
+  .seals{grid-template-columns:repeat(3,1fr)}
+  .guar{grid-template-columns:150px 1fr; gap:34px; padding:36px 40px}
+  .final .btn{width:auto; min-width:360px}
+  .foot{padding-bottom:40px}
+}
+@media (min-width:768px){
+  .sticky{display:none}
+}
+@media (min-width:960px){
+  .hero{padding:26px 0 72px}
+  .hero-grid{grid-template-columns:1.08fr .92fr; align-items:center; gap:56px; margin-top:36px}
+  .hero-art .hero-cover{font-size:10.5px}
+  .hero .lead{font-size:1.1875rem}
+  .pains{grid-template-columns:repeat(3,1fr)}
+  .ba{aspect-ratio:16/9}
+  .safety{grid-template-columns:1.25fr .75fr; gap:56px; align-items:start}
+  .shield-card{position:sticky; top:24px; padding:36px 28px}
+  .sim{grid-template-columns:1.15fr .85fr}
+  .sim-out{border-top:0; border-left:1px solid var(--line)}
+  .days{grid-template-columns:repeat(4,1fr)}
+  .day{grid-template-columns:1fr; gap:12px; padding:20px; align-content:start}
+  .day-n{width:64px}
+  .day--last{grid-column:span 2}
+  .offer-grid{grid-template-columns:1fr 1fr; gap:44px; align-items:start}
+}
+@media (min-width:1100px){
+  .steps{grid-template-columns:repeat(9,1fr); gap:14px}
+  .step{grid-template-columns:1fr; gap:14px; align-content:start}
+  .step::before{display:block; left:54px; right:-8px; top:23.5px; bottom:auto; width:auto; height:1px; background:linear-gradient(90deg,rgba(60,200,232,.55),var(--line))}
+  .step h3{padding-top:0; font-size:1rem}
+  .step p{font-size:.9375rem; line-height:1.5}
+}
+
+/* ============ MOVIMENTO REDUZIDO ============ */
+@media (prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth} }
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important; transition:none !important}
+  .js .reveal{opacity:1; transform:none}
+  .hero-beam{display:none}
+  .ws-sheen{transform:translateX(420px)}
+  .ws-spark{opacity:.9}
+}
+</style>
+
+<!-- =====================================================================
+  EDITAR: PIXEL DO META (navegador)
+  1. Troque SEU_PIXEL_ID pelo ID real do seu Pixel (dois lugares no bloco abaixo).
+  2. Apague a linha de abertura e a linha de fechamento deste comentário para ativar.
+  O evento PageView dispara ao carregar a página.
+  O evento InitiateCheckout já está programado no clique do botão de compra
+  (veja o script no final do arquivo) e só dispara quando o Pixel estiver ativo.
+
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', 'SEU_PIXEL_ID');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+src="https://www.facebook.com/tr?id=SEU_PIXEL_ID&ev=PageView&noscript=1"></noscript>
+
+====================================================================== -->
+</head>
+
+<body>
+<script>document.documentElement.className += ' js';</script>
+
+<!-- Ícones e cena do vidro (SVG reutilizável; não aparece na tela) -->
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="g-ceu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#071B29"/><stop offset=".62" stop-color="#0E3A55"/><stop offset="1" stop-color="#0B2A3F"/></linearGradient>
+    <radialGradient id="g-hor" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#3CC8E8" stop-opacity=".34"/><stop offset="1" stop-color="#3CC8E8" stop-opacity="0"/></radialGradient>
+    <filter id="f-halo" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="13"/></filter>
+    <filter id="f-nevoa" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="2.2"/></filter>
+  </defs>
+
+  <symbol id="cena-vidro" viewBox="0 0 800 500">
+    <rect width="800" height="500" fill="url(#g-ceu)"/>
+    <ellipse cx="400" cy="302" rx="440" ry="96" fill="url(#g-hor)"/>
+    <path d="M0 300v-38h38v-18h30v30h44v-46h26v34h52v-20h34v32h60v26z" fill="#06202F"/>
+    <path d="M800 300v-44h-42v-22h-36v36h-50v-28h-30v40h-58v-14h-40v32z" fill="#06202F"/>
+    <path d="M330 300h140l330 200H0z" fill="#081F2E"/>
+    <path d="M330 300L0 500M470 300l330 200" stroke="#3CC8E8" stroke-opacity=".4" stroke-width="2"/>
+    <path d="M398 310h4l3 24h-10zM394 352h12l5 38h-22zM386 414h28l7 50h-42z" fill="#E8F8FD" opacity=".8"/>
+    <g stroke="#27506A" stroke-width="2.5" stroke-linecap="round">
+      <path d="M252 300v-48M182 318v-98M84 352V168M548 300v-48M618 318v-98M716 352V168"/>
+    </g>
+    <g fill="#E8F8FD">
+      <circle cx="252" cy="250" r="4"/><circle cx="182" cy="218" r="6"/><circle cx="84" cy="166" r="9"/>
+      <circle cx="548" cy="250" r="4"/><circle cx="618" cy="218" r="6"/><circle cx="716" cy="166" r="9"/>
+      <circle cx="352" cy="324" r="5"/><circle cx="374" cy="324" r="5"/>
+    </g>
+    <path d="M0 464Q400 420 800 464v36H0z" fill="#030D15"/>
+  </symbol>
+
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5.5c0 4.4-2.9 8-7 9.5-4.1-1.5-7-5.1-7-9.5V6l7-3z"/><path d="M9 12l2.2 2.2L15 10.4"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7.5l8 6 8-6"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3.5c3 3.6 5.5 6.6 5.5 10a5.5 5.5 0 01-11 0c0-3.4 2.5-6.4 5.5-10z"/></symbol>
+  <symbol id="i-wiper" viewBox="0 0 24 24"><path d="M3 14a9.5 9.5 0 0118 0"/><path d="M12 20l5.5-11"/><circle cx="12" cy="20" r="1.2"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 019.5 4a8 8 0 1010.5 10.5z"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4l9 15.5H3L12 4z"/><path d="M12 10v4.5M12 17.2v.3"/></symbol>
+  <symbol id="i-steps" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1.2"/><circle cx="4.5" cy="12" r="1.2"/><circle cx="4.5" cy="18" r="1.2"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7.5h7M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 16h.01M12 16h.01M15.5 16h.01"/></symbol>
+  <symbol id="i-goggles" viewBox="0 0 24 24"><rect x="2.5" y="8.5" width="8" height="6.5" rx="3"/><rect x="13.5" y="8.5" width="8" height="6.5" rx="3"/><path d="M10.5 11.5h3"/></symbol>
+  <symbol id="i-temp" viewBox="0 0 24 24"><path d="M10 13.5v-8a2 2 0 014 0v8a4 4 0 11-4 0z"/><path d="M12 9v7"/></symbol>
+  <symbol id="i-ban" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M6 6l12 12"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l4 4v12a2 2 0 01-2 2H7a2 2 0 01-2-2V5a2 2 0 012-2z"/><path d="M14 3v4h4M8.5 12h7M8.5 16h5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5.5 8h13l-1 12h-11l-1-12z"/><path d="M9 8V6.5a3 3 0 016 0V8"/></symbol>
+  <symbol id="i-drag" viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></symbol>
+</svg>
+
+<!-- ============ 1. BARRA DE TOPO ============ -->
+<div class="topbar">
+  <span>Material digital educativo</span><i aria-hidden="true">·</i><span>Entrega imediata</span><i aria-hidden="true">·</i><span>Garantia de 7 dias</span>
+</div>
+
+<main>
+
+<!-- ============ 2. HERO ============ -->
+<section class="hero" id="topo">
+  <div class="hero-beam" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round"><path d="M3.5 15.5a8.5 8.5 0 0117 0" stroke="#3CC8E8" stroke-width="2.4"/><path d="M12 19.5l4.5-9" stroke="#E8F8FD" stroke-width="2"/></svg>
+      </span>
+      Vidro Novo
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Guia digital em PDF</p>
+        <h1>Aprenda a polir vidros de carro do jeito certo, <em>sem estragar o vidro</em></h1>
+        <p class="lead">Um passo a passo completo, do diagnóstico à entrega, com checklist de segurança e um plano de treino de 7 dias para você praticar com método.</p>
+        <ul class="ticks">
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>9 etapas na ordem certa, da avaliação à entrega</li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Segurança primeiro: saiba quando polir e quando recusar</li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Plano de 7 dias para treinar antes de atender</li>
+        </ul>
+        <div class="hero-cta">
+          <a class="btn" href="#oferta"><span>Quero o guia por <span class="nw">R$&nbsp;14,90</span></span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <p class="micro">Pagamento único. Acesso imediato. Garantia de 7 dias.</p>
+        </div>
+      </div>
+
+      <!-- Para-brisa estilizado com arco de palheta e brilho de luz (decorativo) -->
+      <div class="hero-art" aria-hidden="true">
+        <svg class="ws" viewBox="0 0 560 340">
+          <defs>
+            <clipPath id="ws-clip"><path d="M128 44Q280 22 432 44q20 3 27 22l63 166q8 22-16 27-226 33-452 0-24-5-16-27l63-166q7-19 27-22z"/></clipPath>
+            <linearGradient id="ws-glass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3CC8E8" stop-opacity=".34"/><stop offset=".55" stop-color="#0E3A55" stop-opacity=".55"/><stop offset="1" stop-color="#071B29" stop-opacity=".75"/></linearGradient>
+            <linearGradient id="ws-clean" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E8F8FD" stop-opacity=".30"/><stop offset="1" stop-color="#3CC8E8" stop-opacity=".06"/></linearGradient>
+            <linearGradient id="ws-sheen-g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+            <radialGradient id="ws-glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#3CC8E8" stop-opacity=".4"/><stop offset="1" stop-color="#3CC8E8" stop-opacity="0"/></radialGradient>
+          </defs>
+          <ellipse cx="280" cy="170" rx="290" ry="170" fill="url(#ws-glow)"/>
+          <path d="M128 44Q280 22 432 44q20 3 27 22l63 166q8 22-16 27-226 33-452 0-24-5-16-27l63-166q7-19 27-22z" fill="url(#ws-glass)" stroke="#E8F8FD" stroke-opacity=".6" stroke-width="1.5"/>
+          <g clip-path="url(#ws-clip)">
+            <rect width="560" height="340" fill="#E8F8FD" opacity=".05"/>
+            <!-- área varrida pela palheta -->
+            <path d="M85.2 209.1A215 215 0 01474.8 209.1L334.4 274.6A60 60 0 00225.6 274.6z" fill="url(#ws-clean)" stroke="#E8F8FD" stroke-opacity=".55" stroke-width="1.2" stroke-dasharray="2 7" stroke-linecap="round"/>
+            <path d="M118 164A180 180 0 01442 164" fill="none" stroke="#E8F8FD" stroke-opacity=".16"/>
+            <path d="M155 130A150 150 0 01405 130" fill="none" stroke="#E8F8FD" stroke-opacity=".1"/>
+            <!-- brilho que cruza o vidro -->
+            <g transform="skewX(-20)"><rect class="ws-sheen" x="-230" y="0" width="130" height="340" fill="url(#ws-sheen-g)" opacity=".5"/></g>
+          </g>
+          <rect x="258" y="47" width="44" height="15" rx="6" fill="#071B29" stroke="#E8F8FD" stroke-opacity=".3"/>
+          <!-- palheta -->
+          <path d="M280 300L150 239.4" stroke="#B7CAD6" stroke-width="3" stroke-linecap="round"/>
+          <path d="M225.6 274.6L85.2 209.1" stroke="#E8F8FD" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="280" cy="300" r="7" fill="#0E3A55" stroke="#E8F8FD" stroke-width="2"/>
+          <!-- reflexos pontuais -->
+          <path class="ws-spark" d="M372 96c1.2 9 5 12.800 14 14-9 1.200-12.800 5-14 14-1.200-9-5-12.800-14-14 9-1.200 12.800-5 14-14z" fill="#fff"/>
+          <path class="ws-spark" d="M214 132c.8 6 3.300 8.500 9.300 9.300-6 .8-8.500 3.300-9.300 9.300-.8-6-3.300-8.500-9.300-9.300 6-.8 8.500-3.300 9.300-9.300z" fill="#fff"/>
+          <path class="ws-spark" d="M438 172c.6 4.500 2.500 6.400 7 7-4.500.6-6.400 2.500-7 7-.6-4.500-2.500-6.400-7-7 4.500-.6 6.400-2.500 7-7z" fill="#fff"/>
+        </svg>
+
+        <div class="cover hero-cover">
+          <span class="cover-tag">Guia completo</span>
+          <span class="cover-title">Vidro Novo</span>
+          <span class="cover-sub">Polimento de vidros automotivos</span>
+          <span class="cover-foot">PDF · 11 páginas</span>
+        </div>
+        <span class="hero-chip"><svg class="i"><use href="#i-mail"/></svg>Chega no seu e-mail</span>
+      </div>
+    </div>
+
+    <!-- Números do material (contagem animada) -->
+    <ul class="stats glass reveal" aria-label="O material em números">
+      <li class="stat"><b data-count="9">9</b><span>etapas do serviço, em ordem</span></li>
+      <li class="stat"><b data-count="11">11</b><span>páginas diretas ao ponto</span></li>
+      <li class="stat"><b data-count="7">7</b><span>dias de plano de treino</span></li>
+      <li class="stat"><b data-count="4">4</b><span>abas na planilha (complemento opcional)</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 3. O PROBLEMA ============ -->
+<section class="sec" id="problema">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">O ponto de partida</p>
+      <h2>Vidro marcado atrapalha. Polir sem método dá receio.</h2>
+      <p class="lead">Polir vidro tem ordem, tem limite e tem risco. Quase ninguém explica isso do começo ao fim. É normal travar em algum destes pontos:</p>
+    </div>
+    <ul class="pains">
+      <li class="pain reveal"><span class="pain-ic"><svg class="i" aria-hidden="true"><use href="#i-wiper"/></svg></span><div><h3>Marca de palheta</h3><p>O arco que fica no para-brisa e não sai com limpeza comum.</p></div></li>
+      <li class="pain reveal" style="--d:60ms"><span class="pain-ic"><svg class="i" aria-hidden="true"><use href="#i-drop"/></svg></span><div><h3>Manchas de água</h3><p>Depósitos minerais que grudam no vidro e continuam lá depois da lavagem.</p></div></li>
+      <li class="pain reveal" style="--d:120ms"><span class="pain-ic"><svg class="i" aria-hidden="true"><use href="#i-moon"/></svg></span><div><h3>Vidro opaco à noite</h3><p>Faróis e postes viram clarão quando o vidro está marcado.</p></div></li>
+      <li class="pain reveal"><span class="pain-ic"><svg class="i" aria-hidden="true"><use href="#i-alert"/></svg></span><div><h3>Receio de estragar o vidro</h3><p>Calor demais, pasta seca ou pressão errada podem danificar o vidro.</p></div></li>
+      <li class="pain reveal" style="--d:60ms"><span class="pain-ic"><svg class="i" aria-hidden="true"><use href="#i-steps"/></svg></span><div><h3>Falta de um processo</h3><p>Dicas soltas mostram pedaços. Falta a sequência completa, do teste à entrega.</p></div></li>
+      <li class="pain reveal" style="--d:120ms"><span class="pain-ic"><svg class="i" aria-hidden="true"><use href="#i-calc"/></svg></span><div><h3>Dúvida na hora de orçar</h3><p>Sem conhecer o seu custo, o preço vira chute.</p></div></li>
+    </ul>
+    <p class="sec-foot reveal">O Vidro Novo organiza tudo isso em um processo só. <a class="tlink" href="#antes-depois">Veja a diferença no vidro<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+  </div>
+</section>
+
+<!-- ============ 4. ANTES E DEPOIS ============ -->
+<section class="sec sec--deep" id="antes-depois">
+  <div class="wrap wrap--narrow" style="max-width:920px">
+    <div class="sec-head sec-head--center reveal">
+      <p class="eyebrow">Antes e depois</p>
+      <h2>Arraste e compare</h2>
+      <p class="lead">À esquerda, o vidro com marcas de palheta e manchas. À direita, o vidro limpo.</p>
+    </div>
+
+    <figure class="reveal">
+      <div class="ba" id="ba">
+
+        <!-- CAMADA "DEPOIS" (fica por baixo) -->
+        <div class="ba-layer ba-after">
+          <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Ilustração: vista pelo para-brisa limpo, com luzes nítidas">
+            <use href="#cena-vidro"/>
+            <path d="M560 0h70L400 500h-70z" fill="#E8F8FD" opacity=".05"/>
+            <path d="M660 0h22L452 500h-22z" fill="#E8F8FD" opacity=".04"/>
+            <g stroke="#E8F8FD" stroke-width="1.5" stroke-linecap="round" opacity=".85">
+              <path d="M716 148v36M698 166h36M618 206v24M606 218h24M548 242v16M540 250h16"/>
+            </g>
+          </svg>
+          <!-- EDITAR · FOTO REAL DO "DEPOIS" (opcional)
+               Para usar foto de verdade, tire a linha <img> abaixo de dentro deste comentário e troque o src.
+               Use a mesma proporção e o mesmo enquadramento do "antes" (sugestão: 1600 x 1000 px, JPG ou WebP leve).
+               Se a foto não carregar, ela some sozinha e a ilustração acima continua aparecendo.
+          <img class="ba-photo" src="fotos/depois.jpg" alt="Para-brisa depois do polimento, sem marcas" loading="lazy" decoding="async" draggable="false" onerror="this.remove()">
+          -->
+        </div>
+
+        <!-- CAMADA "ANTES" (fica por cima e é recortada pelo controle) -->
+        <div class="ba-layer ba-before">
+          <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Ilustração: vista pelo para-brisa com marcas de palheta, manchas de água e clarão nas luzes">
+            <use href="#cena-vidro"/>
+            <g filter="url(#f-halo)" fill="#E8F8FD" opacity=".5">
+              <circle cx="84" cy="166" r="44"/><circle cx="182" cy="218" r="32"/><circle cx="252" cy="250" r="22"/>
+              <circle cx="716" cy="166" r="44"/><circle cx="618" cy="218" r="32"/><circle cx="548" cy="250" r="22"/>
+              <ellipse cx="363" cy="324" rx="40" ry="20"/>
+            </g>
+            <rect width="800" height="500" fill="#CFE6EF" opacity=".13"/>
+            <g fill="none" stroke="#E8F8FD" filter="url(#f-nevoa)">
+              <circle cx="400" cy="640" r="435" stroke-width="215" stroke-opacity=".06"/>
+              <circle cx="400" cy="640" r="330" stroke-width="5" stroke-opacity=".42"/>
+              <circle cx="400" cy="640" r="352" stroke-width="2" stroke-opacity=".18" stroke-dasharray="90 14"/>
+              <circle cx="400" cy="640" r="382" stroke-width="3" stroke-opacity=".24" stroke-dasharray="160 22"/>
+              <circle cx="400" cy="640" r="416" stroke-width="1.5" stroke-opacity=".16"/>
+              <circle cx="400" cy="640" r="452" stroke-width="4" stroke-opacity=".24" stroke-dasharray="210 18"/>
+              <circle cx="400" cy="640" r="482" stroke-width="1.5" stroke-opacity=".16" stroke-dasharray="70 10"/>
+              <circle cx="400" cy="640" r="512" stroke-width="2.5" stroke-opacity=".2"/>
+              <circle cx="400" cy="640" r="542" stroke-width="6" stroke-opacity=".44"/>
+            </g>
+            <g fill="#E8F8FD" fill-opacity=".08" stroke="#E8F8FD" stroke-opacity=".5" stroke-width="1.3">
+              <circle cx="120" cy="92" r="9"/><circle cx="170" cy="132" r="5"/><circle cx="240" cy="70" r="12"/><circle cx="310" cy="150" r="6"/>
+              <circle cx="92" cy="232" r="7"/><circle cx="520" cy="90" r="10"/><circle cx="600" cy="140" r="6"/><circle cx="680" cy="80" r="13"/>
+              <circle cx="730" cy="238" r="7"/><circle cx="450" cy="60" r="5"/><circle cx="560" cy="318" r="8"/><circle cx="210" cy="282" r="6"/>
+              <circle cx="640" cy="330" r="9"/><circle cx="380" cy="112" r="7"/><circle cx="60" cy="330" r="10"/><circle cx="296" cy="372" r="5"/>
+              <circle cx="150" cy="390" r="7"/><circle cx="330" cy="236" r="8"/><circle cx="36" cy="120" r="6"/><circle cx="268" cy="196" r="4"/>
+            </g>
+          </svg>
+          <!-- EDITAR · FOTO REAL DO "ANTES" (opcional)
+               Tire a linha <img> abaixo de dentro deste comentário e troque o src.
+               Use fotos suas ou com autorização de uso.
+          <img class="ba-photo" src="fotos/antes.jpg" alt="Para-brisa antes do polimento, com marcas de palheta e manchas" loading="lazy" decoding="async" draggable="false" onerror="this.remove()">
+          -->
+        </div>
+
+        <span class="ba-tag ba-tag--a" aria-hidden="true">Antes</span>
+        <span class="ba-tag ba-tag--d" aria-hidden="true">Depois</span>
+
+        <input class="ba-range" id="ba-range" type="range" min="0" max="100" step="1" value="50" aria-label="Comparar antes e depois. Use as setas para mover a divisão.">
+        <div class="ba-handle" aria-hidden="true"><span class="ba-knob"><svg viewBox="0 0 24 24"><use href="#i-drag"/></svg></span></div>
+      </div>
+      <p class="ba-hint" aria-hidden="true"><svg class="i"><use href="#i-drag"/></svg>Arraste a linha para os lados</p>
+      <figcaption class="ba-cap">Ilustração para demonstrar o conceito. O resultado real depende do estado de cada vidro, do equipamento e da sua prática.</figcaption>
+    </figure>
+
+    <p class="sec-foot sec-foot--center reveal">Chegar a esse resultado pede sequência. <a class="tlink" href="#metodo">Conheça as 9 etapas<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+  </div>
+</section>
+
+<!-- ============ 5. O MÉTODO EM 9 ETAPAS ============ -->
+<section class="sec" id="metodo">
+  <div class="wrap wrap--wide">
+    <div class="sec-head reveal">
+      <p class="eyebrow">O método</p>
+      <h2>O método Vidro Novo em 9 etapas</h2>
+      <p class="lead">Uma sequência só, na ordem em que o serviço acontece. Você sabe o que fazer, quando fazer e quando parar.</p>
+    </div>
+    <ol class="steps">
+      <li class="step reveal"><span class="step-n" aria-hidden="true">1</span><div><h3><span class="sr-only">Etapa 1: </span>Avaliação</h3><p>Identifique o tipo de marca e decida se o vidro pode ser polido.</p></div></li>
+      <li class="step reveal" style="--d:50ms"><span class="step-n" aria-hidden="true">2</span><div><h3><span class="sr-only">Etapa 2: </span>Proteção</h3><p>Isole borrachas, pintura e plásticos antes de começar.</p></div></li>
+      <li class="step reveal" style="--d:100ms"><span class="step-n" aria-hidden="true">3</span><div><h3><span class="sr-only">Etapa 3: </span>Limpeza</h3><p>Remova a sujeira para não arrastar partículas no vidro.</p></div></li>
+      <li class="step reveal" style="--d:150ms"><span class="step-n" aria-hidden="true">4</span><div><h3><span class="sr-only">Etapa 4: </span>Teste</h3><p>Comece por uma área pequena e confirme o resultado.</p></div></li>
+      <li class="step reveal" style="--d:200ms"><span class="step-n" aria-hidden="true">5</span><div><h3><span class="sr-only">Etapa 5: </span>Preparo do abrasivo</h3><p>Deixe a pasta na consistência certa e sempre úmida.</p></div></li>
+      <li class="step reveal" style="--d:250ms"><span class="step-n" aria-hidden="true">6</span><div><h3><span class="sr-only">Etapa 6: </span>Polimento por seções</h3><p>Trabalhe em áreas pequenas, controlando calor e pressão.</p></div></li>
+      <li class="step reveal" style="--d:300ms"><span class="step-n" aria-hidden="true">7</span><div><h3><span class="sr-only">Etapa 7: </span>Limpeza e inspeção</h3><p>Limpe, confira contra a luz e repita só onde precisa.</p></div></li>
+      <li class="step reveal" style="--d:350ms"><span class="step-n" aria-hidden="true">8</span><div><h3><span class="sr-only">Etapa 8: </span>Acabamento</h3><p>Finalize o vidro e retire as proteções com cuidado.</p></div></li>
+      <li class="step reveal" style="--d:400ms"><span class="step-n" aria-hidden="true">9</span><div><h3><span class="sr-only">Etapa 9: </span>Entrega</h3><p>Mostre o resultado ao cliente e registre o serviço.</p></div></li>
+    </ol>
+    <p class="sec-foot reveal">Antes de tudo isso vem uma pergunta importante: este vidro pode ser polido? <a class="tlink" href="#limites">Veja os limites<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+  </div>
+</section>
+
+<!-- ============ 6. O QUE RESOLVE E O QUE NÃO RESOLVE ============ -->
+<section class="sec sec--deep" id="limites">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Sem exagero</p>
+      <h2>O que o polimento resolve e o que não resolve</h2>
+      <p class="lead">Atender bem começa por conhecer o limite do serviço. O guia ensina a avaliar antes de ligar a máquina.</p>
+    </div>
+    <div class="duo">
+      <div class="panel glass reveal">
+        <div class="panel-top"><span class="badge-ic badge-ic--ok"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><h3>O polimento resolve</h3></div>
+        <ul class="rows rows--ok">
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><div><b>Marcas de palheta</b><span>O arco superficial deixado pelo vai e vem da palheta.</span></div></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><div><b>Manchas de água dura</b><span>Depósitos minerais que a lavagem comum não tira.</span></div></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><div><b>Micro-riscos</b><span>Riscos leves e superficiais, que a unha não sente.</span></div></li>
+        </ul>
+      </div>
+      <div class="panel glass reveal" style="--d:100ms">
+        <div class="panel-top"><span class="badge-ic badge-ic--no"><svg class="i" aria-hidden="true"><use href="#i-x"/></svg></span><h3>O polimento não resolve</h3></div>
+        <ul class="rows rows--no">
+          <li><svg class="i" aria-hidden="true"><use href="#i-x"/></svg><div><b>Risco profundo</b><span>Aquele que a unha prende ao passar.</span></div></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-x"/></svg><div><b>Trinca</b><span>Não é caso de polimento. Insistir pode piorar.</span></div></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-x"/></svg><div><b>Lasca</b><span>Impacto de pedra pede reparo específico ou troca.</span></div></li>
+        </ul>
+        <p class="panel-note">Nesses casos, o certo é recusar o polimento e indicar um serviço especializado.</p>
+      </div>
+    </div>
+    <p class="sec-foot reveal">Saber dizer "este não" faz parte do trabalho bem feito. <a class="tlink" href="#seguranca">Veja como o guia trata a segurança<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+  </div>
+</section>
+
+<!-- ============ 7. SEGURANÇA ============ -->
+<section class="sec" id="seguranca">
+  <div class="wrap">
+    <div class="safety">
+      <div>
+        <div class="sec-head reveal">
+          <p class="eyebrow">O diferencial</p>
+          <h2>Segurança em primeiro lugar</h2>
+          <p class="lead">Vidro não combina com pressa. Por isso o guia trata segurança como parte do processo, do primeiro ao último passo.</p>
+        </div>
+        <ul class="safe-list">
+          <li class="safe reveal"><span class="safe-ic"><svg class="i" aria-hidden="true"><use href="#i-goggles"/></svg></span><div><h3>Equipamento de proteção (EPI)</h3><p>O que usar para proteger olhos, mãos e respiração, e por quê.</p></div></li>
+          <li class="safe reveal"><span class="safe-ic"><svg class="i" aria-hidden="true"><use href="#i-temp"/></svg></span><div><h3>Controle de calor</h3><p>Como acompanhar a temperatura do vidro e fazer pausas na hora certa.</p></div></li>
+          <li class="safe reveal"><span class="safe-ic"><svg class="i" aria-hidden="true"><use href="#i-drop"/></svg></span><div><h3>Pasta sempre úmida</h3><p>Abrasivo seco aumenta o atrito e o calor. Veja como manter a umidade.</p></div></li>
+          <li class="safe reveal"><span class="safe-ic"><svg class="i" aria-hidden="true"><use href="#i-ban"/></svg></span><div><h3>Quando recusar o serviço</h3><p>Critérios claros para reconhecer o vidro que não deve ser polido.</p></div></li>
+          <li class="safe reveal"><span class="safe-ic"><svg class="i" aria-hidden="true"><use href="#i-doc"/></svg></span><div><h3>Termo de ciência</h3><p>Combine com o cliente o que será feito e quais são os limites, antes de começar. O modelo pronto vem no Kit de Atendimento, que é o complemento opcional.</p></div></li>
+        </ul>
+        <div class="warn reveal" role="note">
+          <svg class="i" aria-hidden="true"><use href="#i-alert"/></svg>
+          <p><b>Atenção:</b> siga sempre as instruções do fabricante dos seus equipamentos e produtos. O guia não substitui essas instruções.</p>
+        </div>
+      </div>
+      <aside class="shield-card glass reveal" aria-label="Resumo de segurança">
+        <div class="shield-big"><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg></div>
+        <h3>Primeiro testar. Depois polir.</h3>
+        <p>Área pequena, calor sob controle e pasta úmida. É assim que o método reduz o risco em cada etapa.</p>
+        <p style="margin-top:16px"><a class="tlink" href="#o-que-recebe">Veja tudo o que você recebe<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. O QUE VOCÊ RECEBE ============ -->
+<section class="sec sec--deep" id="o-que-recebe">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">O material</p>
+      <h2>O que você recebe</h2>
+      <p class="lead">O guia é a oferta de entrada. A planilha e o kit formam um complemento opcional, que você escolhe na hora da compra.</p>
+    </div>
+
+    <p class="group-label reveal">Na oferta de entrada <span class="pill pill--in">Incluso por R$ 14,90</span></p>
+    <div class="cards cards--in">
+      <article class="card reveal">
+        <div class="card-art" role="img" aria-label="Capa do guia Vidro Novo com páginas internas ao fundo">
+          <div class="fan">
+            <div class="page"><i></i><i></i><i></i><em></em><i></i><i></i></div>
+            <div class="page"><i></i><i></i><em></em><i></i><i></i><i></i></div>
+            <div class="page"><i></i><i></i><i></i><i></i><em></em><i></i></div>
+            <div class="cover"><span class="cover-tag">Guia completo</span><span class="cover-title">Vidro Novo</span><span class="cover-sub">Polimento de vidros automotivos</span><span class="cover-foot">PDF · 11 páginas</span></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-fmt">PDF · 11 páginas</span>
+          <h3>Guia Completo de Polimento de Vidros Automotivos</h3>
+          <p>Diagnóstico, materiais, segurança, as 9 etapas do serviço, problemas comuns, orçamento e como encontrar clientes.</p>
+        </div>
+      </article>
+      <article class="card reveal" style="--d:100ms">
+        <div class="card-art" role="img" aria-label="Quadro com os sete dias do plano de treino">
+          <div class="week">
+            <span class="done">Dia<b>1</b><i></i></span><span class="done">Dia<b>2</b><i></i></span><span class="done">Dia<b>3</b><i></i></span><span>Dia<b>4</b><i></i></span><span>Dia<b>5</b><i></i></span><span>Dia<b>6</b><i></i></span><span>Dia<b>7</b><i></i></span>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-fmt">Dentro do guia</span>
+          <h3>Plano de treino de 7 dias</h3>
+          <p>Um roteiro diário para praticar com método e ter mais segurança antes de atender.</p>
+        </div>
+      </article>
+    </div>
+
+    <p class="group-label reveal">No complemento opcional <span class="pill pill--bump">+ R$ 9,90 na hora da compra</span></p>
+    <div class="cards cards--bump">
+      <article class="card reveal">
+        <div class="card-art" role="img" aria-label="Janela da planilha aberta na aba Orçamento, com as abas Materiais, Serviços e Meta">
+          <div class="sheet">
+            <div class="sheet-bar"><i></i><i></i><i></i><span>Planilha de Precificação</span></div>
+            <div class="sheet-row sheet-head"><span>Item</span><span>Valor</span></div>
+            <div class="sheet-row"><span>Valor da hora</span><b></b></div>
+            <div class="sheet-row"><span>Horas do serviço</span><b></b></div>
+            <div class="sheet-row"><span>Materiais</span><b></b></div>
+            <div class="sheet-row"><span>Deslocamento</span><b></b></div>
+            <div class="sheet-row sheet-total"><span>Preço sugerido</span><b></b></div>
+            <div class="sheet-tabs"><span class="on">Orçamento</span><span>Materiais</span><span>Serviços</span><span>Meta</span></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-fmt">Excel · 4 abas</span>
+          <h3>Planilha de Precificação</h3>
+          <p>Calcula o preço do serviço a partir do seu custo real. Abas: Orçamento, Materiais, Serviços e Meta.</p>
+        </div>
+      </article>
+      <article class="card reveal" style="--d:80ms">
+        <div class="card-art" role="img" aria-label="Duas folhas do kit: uma lista de verificação e um termo com linha de assinatura">
+          <div class="docs">
+            <div class="doc"><u></u><i class="ok"></i><i class="ok"></i><i class="ok"></i><i></i><i></i></div>
+            <div class="doc"><u></u><i></i><i></i><i></i><s></s><small></small></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-fmt">PDF</span>
+          <h3>Kit de Atendimento</h3>
+          <p>Checklist do serviço, termo de ciência do cliente, modelo de orçamento, checklist de materiais e registro de treino.</p>
+        </div>
+      </article>
+      <article class="card reveal" style="--d:160ms">
+        <div class="card-art" role="img" aria-label="Lista de compra de materiais">
+          <div class="buy">
+            <div class="buy-top"><svg class="i"><use href="#i-bag"/></svg>Materiais</div>
+            <i style="--w:72%"></i><i style="--w:54%"></i><i style="--w:66%"></i><i style="--w:44%"></i>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-fmt">Parte do kit</span>
+          <h3>Guia de compra de materiais</h3>
+          <p>Uma referência para montar sua lista com calma e escolher cada item sabendo o que observar.</p>
+        </div>
+      </article>
+    </div>
+    <p class="sec-foot reveal">Quer ver como a conta de preço funciona? <a class="tlink" href="#simulador">Teste o simulador<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+  </div>
+</section>
+
+<!-- ============ 9. SIMULADOR DE PREÇO DO SERVIÇO ============ -->
+<section class="sec" id="simulador">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Simulador</p>
+      <h2>Simule o preço do seu serviço</h2>
+      <p class="lead">Preço claro nasce do seu custo real. Troque os valores de exemplo pelos seus e veja como a conta funciona.</p>
+    </div>
+
+    <div class="sim glass reveal">
+      <form class="sim-form" id="sim" novalidate onsubmit="return false">
+        <div class="field">
+          <label for="s-hora">Valor da sua hora</label>
+          <div class="field-box"><input id="s-hora" type="text" inputmode="decimal" autocomplete="off" value="40"><span aria-hidden="true">R$</span></div>
+        </div>
+        <div class="field field--suffix">
+          <label for="s-horas">Horas do serviço</label>
+          <div class="field-box"><input id="s-horas" type="text" inputmode="decimal" autocomplete="off" value="2"><span aria-hidden="true">h</span></div>
+        </div>
+        <div class="field">
+          <label for="s-mat">Custo de material</label>
+          <div class="field-box"><input id="s-mat" type="text" inputmode="decimal" autocomplete="off" value="25"><span aria-hidden="true">R$</span></div>
+        </div>
+        <div class="field">
+          <label for="s-desl">Deslocamento</label>
+          <div class="field-box"><input id="s-desl" type="text" inputmode="decimal" autocomplete="off" value="15"><span aria-hidden="true">R$</span></div>
+        </div>
+        <div class="field field--suffix">
+          <label for="s-margem">Margem</label>
+          <div class="field-box"><input id="s-margem" type="text" inputmode="decimal" autocomplete="off" value="20"><span aria-hidden="true">%</span></div>
+        </div>
+        <div class="field field--suffix">
+          <label for="s-imp">Imposto</label>
+          <div class="field-box"><input id="s-imp" type="text" inputmode="decimal" autocomplete="off" value="6" aria-describedby="s-erro"><span aria-hidden="true">%</span></div>
+        </div>
+      </form>
+
+      <div class="sim-out">
+        <div aria-live="polite" aria-atomic="true">
+          <p class="sim-label">Preço sugerido para este exemplo</p>
+          <p class="sim-price" id="s-preco">R$ 153,19</p>
+        </div>
+        <p class="sim-err" id="s-erro" hidden>Informe um imposto menor que 100%.</p>
+        <div class="sim-break">
+          <div><span>Custo base</span><b id="s-base">R$ 120,00</b></div>
+          <div><span>Margem aplicada</span><b id="s-vmargem">R$ 24,00</b></div>
+          <div><span>Imposto estimado</span><b id="s-vimp">R$ 9,19</b></div>
+        </div>
+        <p class="sim-formula">Como a conta é feita: custo base = horas × valor da hora + material + deslocamento. Preço = custo base × (1 + margem) ÷ (1 − imposto).</p>
+        <div class="sim-note" role="note">
+          <svg class="i" aria-hidden="true"><use href="#i-alert"/></svg>
+          <p>Exemplo ilustrativo de cálculo, não é preço de mercado nem promessa de resultado.</p>
+        </div>
+      </div>
+    </div>
+    <p class="sec-foot reveal">A Planilha de Precificação, do complemento opcional, faz essa conta com mais detalhe. Agora, veja como treinar: <a class="tlink" href="#plano">Plano de 7 dias<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+  </div>
+</section>
+
+<!-- ============ 10. PLANO DE TREINO DE 7 DIAS ============ -->
+<section class="sec sec--deep" id="plano">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Prática guiada</p>
+      <h2>Plano de treino de 7 dias</h2>
+      <p class="lead">Um tema por dia, na mesma ordem do método. A sugestão é praticar em um vidro de teste antes de trabalhar no carro de um cliente.</p>
+    </div>
+    <!-- EDITAR (se precisar): ajuste os temas abaixo para ficarem iguais aos do plano dentro do seu PDF. -->
+    <ol class="days">
+      <li class="day reveal"><span class="day-n">Dia<b>1</b></span><div><h3>Diagnóstico</h3><p>Aprenda a ler o vidro e a separar o que pode do que não pode ser polido.</p></div></li>
+      <li class="day reveal" style="--d:60ms"><span class="day-n">Dia<b>2</b></span><div><h3>Materiais e segurança</h3><p>Organize os materiais, confira o EPI e prepare a área de trabalho.</p></div></li>
+      <li class="day reveal" style="--d:120ms"><span class="day-n">Dia<b>3</b></span><div><h3>Proteção e limpeza</h3><p>Pratique isolar o entorno e deixar o vidro pronto para o teste.</p></div></li>
+      <li class="day reveal" style="--d:180ms"><span class="day-n">Dia<b>4</b></span><div><h3>Teste e abrasivo</h3><p>Prepare a pasta e faça a sua primeira área de teste.</p></div></li>
+      <li class="day reveal"><span class="day-n">Dia<b>5</b></span><div><h3>Polimento por seções</h3><p>Uma seção por vez, de olho no calor e na umidade.</p></div></li>
+      <li class="day reveal" style="--d:60ms"><span class="day-n">Dia<b>6</b></span><div><h3>Inspeção e acabamento</h3><p>Confira contra a luz, corrija o que faltou e finalize.</p></div></li>
+      <li class="day day--last reveal" style="--d:120ms"><span class="day-n">Dia<b>7</b></span><div><h3>Serviço completo</h3><p>Execute as 9 etapas do início ao fim e monte um orçamento de treino.</p></div></li>
+    </ol>
+    <p class="sec-foot reveal">Sete dias de prática com roteiro. <a class="tlink" href="#para-quem">Veja se o guia é para você<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+  </div>
+</section>
+
+<!-- ============ 11. PARA QUEM É / PARA QUEM NÃO É ============ -->
+<section class="sec" id="para-quem">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Transparência</p>
+      <h2>Para quem é. E para quem não é.</h2>
+    </div>
+    <div class="duo">
+      <div class="panel glass reveal">
+        <div class="panel-top"><span class="badge-ic badge-ic--ok"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><h3>É para você se</h3></div>
+        <ul class="rows rows--ok">
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><div><b>Quer aprender um serviço de estética automotiva</b><span>Com método, começando do básico.</span></div></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><div><b>Já trabalha com estética, lava-jato ou oficina</b><span>E quer adicionar o polimento de vidros ao que oferece.</span></div></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><div><b>Prefere um passo a passo direto</b><span>Para ler no celular e consultar durante o treino.</span></div></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><div><b>Topa praticar antes de atender</b><span>O plano de 7 dias existe para isso.</span></div></li>
+        </ul>
+      </div>
+      <div class="panel glass reveal" style="--d:100ms">
+        <div class="panel-top"><span class="badge-ic badge-ic--no"><svg class="i" aria-hidden="true"><use href="#i-x"/></svg></span><h3>Não é para você se</h3></div>
+        <ul class="rows rows--no">
+          <li><svg class="i" aria-hidden="true"><use href="#i-x"/></svg><div><b>Busca promessa de resultado financeiro</b><span>Este é um material educativo, sem garantia de retorno.</span></div></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-x"/></svg><div><b>Quer consertar trinca, lasca ou risco profundo</b><span>Polimento não resolve esses casos.</span></div></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-x"/></svg><div><b>Não pretende treinar nem usar proteção</b><span>O método depende de prática e de segurança.</span></div></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-x"/></svg><div><b>Espera um curso em vídeo</b><span>O conteúdo é um guia em PDF.</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+  EDITAR · DEPOIMENTOS (BLOCO DESATIVADO)
+  Ativar quando houver depoimentos reais com autorização.
+  Não publique depoimentos inventados, números de alunos ou avaliações que você não possa comprovar.
+  Para ativar: tire o bloco <section> abaixo de dentro deste comentário e troque os textos entre chaves.
+
+<section class="sec sec--deep" id="depoimentos">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Quem já usou</p>
+      <h2>O que dizem sobre o guia</h2>
+    </div>
+    <div class="duo">
+      <figure class="panel glass">
+        <blockquote><p>{{TEXTO_DO_DEPOIMENTO_REAL_1}}</p></blockquote>
+        <figcaption class="panel-note">{{NOME_AUTORIZADO_1}}, {{CIDADE_UF_1}}</figcaption>
+      </figure>
+      <figure class="panel glass">
+        <blockquote><p>{{TEXTO_DO_DEPOIMENTO_REAL_2}}</p></blockquote>
+        <figcaption class="panel-note">{{NOME_AUTORIZADO_2}}, {{CIDADE_UF_2}}</figcaption>
+      </figure>
+    </div>
+    <p class="sec-foot">Depoimentos publicados com autorização. Resultados dependem de prática, do equipamento e do estado de cada vidro.</p>
+  </div>
+</section>
+
+====================================================================== -->
+
+<!-- ============ 12. OFERTA E CHECKOUT ============ -->
+<section class="sec offer-sec" id="oferta">
+  <div class="wrap">
+    <div class="sec-head sec-head--center reveal">
+      <p class="eyebrow">A oferta</p>
+      <h2>Comece pelo passo a passo</h2>
+    </div>
+
+    <div class="offer reveal">
+      <div class="offer-grid">
+        <div>
+          <p class="offer-name">Vidro Novo · Guia Completo de Polimento de Vidros Automotivos</p>
+          <span class="pill pill--in offer-launch">Preço de lançamento</span>
+          <p class="price" aria-label="14 reais e 90 centavos"><small aria-hidden="true">R$</small><b aria-hidden="true">14</b><sup aria-hidden="true">,90</sup></p>
+          <p class="price-note">Pagamento único, sem mensalidade.</p>
+          <ul class="incl" aria-label="O que está incluso">
+            <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Guia Completo em PDF, com 11 páginas</li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>As 9 etapas do serviço, da avaliação à entrega</li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Diagnóstico, materiais e segurança</li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Problemas comuns e como lidar com eles</li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Orçamento e como encontrar clientes</li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Plano de treino de 7 dias</li>
+          </ul>
+        </div>
+
+        <div>
+          <!-- ORDER BUMP: ao marcar, o botão passa a apontar para o link do guia + complemento -->
+          <label class="bump" id="bump-box" for="bump">
+            <span>
+              <input type="checkbox" id="bump" aria-describedby="bump-desc">
+              <span class="bump-box" aria-hidden="true"><svg class="i"><use href="#i-check"/></svg></span>
+            </span>
+            <span>
+              <span class="bump-title">Sim, quero adicionar a Planilha de Precificação + Kit de Atendimento por <em>+ R$ 9,90</em></span>
+              <span class="bump-text" id="bump-desc">Planilha em Excel com 4 abas (Orçamento, Materiais, Serviços e Meta) e Kit em PDF com checklist do serviço, termo de ciência do cliente, modelo de orçamento, checklist de materiais, registro de treino e guia de compra de materiais.</span>
+              <span class="bump-mini" aria-hidden="true">
+                <span class="mini-sheet"><i></i><b></b><b></b><b></b><b></b></span>
+                <span class="mini-doc"><i></i><i></i><i></i><i></i><i></i></span>
+                <span>Excel + PDF</span>
+              </span>
+            </span>
+          </label>
+
+          <p class="total"><span>Total</span><b id="total-valor" aria-live="polite">R$ 14,90</b></p>
+
+          <!-- ============================================================
+            EDITAR · LINKS DE CHECKOUT (único lugar onde eles ficam)
+            href ............ troque {{LINK_CHECKOUT_GUIA}} pelo link de pagamento só do guia (R$ 14,90)
+            data-href-bump .. troque {{LINK_CHECKOUT_GUIA_MAIS_BUMP}} pelo link do guia + complemento (R$ 24,80)
+            O script no final do arquivo alterna entre os dois quando a caixa acima é marcada.
+          ============================================================ -->
+          <a class="btn btn--lg btn--block" id="btn-checkout"
+             href="{{LINK_CHECKOUT_GUIA}}"
+             data-href-bump="{{LINK_CHECKOUT_GUIA_MAIS_BUMP}}">
+            <span id="btn-checkout-texto">Quero o Vidro Novo por R$&nbsp;14,90</span>
+          </a>
+          <p class="micro">Entrega imediata por e-mail. Garantia de 7 dias.</p>
+
+          <!-- EDITAR: mantenha apenas os selos que forem verdadeiros na sua operação.
+               "Compra segura" pressupõe checkout em plataforma de pagamento com conexão protegida (https). -->
+          <ul class="seals">
+            <li class="seal"><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg>Garantia de 7 dias</li>
+            <li class="seal"><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg>Compra segura</li>
+            <li class="seal"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg>Acesso imediato</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 13. GARANTIA ============ -->
+<section class="sec" id="garantia">
+  <div class="wrap wrap--narrow" style="max-width:900px">
+    <div class="guar glass reveal">
+      <div class="guar-seal" aria-hidden="true"><div><b data-count="7">7</b><span>dias de<br>garantia</span></div></div>
+      <div>
+        <h2>Garantia de 7 dias, sem complicação</h2>
+        <p>Compre, leia e avalie com calma. Se em até 7 dias você achar que o material não é para você, peça a devolução e receba o valor de volta.</p>
+        <p>Para pedir, é só usar o canal de contato indicado no rodapé desta página.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 14. PERGUNTAS FREQUENTES ============ -->
+<section class="sec sec--deep" id="duvidas">
+  <div class="wrap wrap--narrow">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Dúvidas</p>
+      <h2>Perguntas frequentes</h2>
+    </div>
+    <div class="faq reveal">
+      <details>
+        <summary>Preciso de experiência?<svg class="i" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+        <p class="faq-a">Não. O guia começa pelo diagnóstico e segue passo a passo. O plano de 7 dias existe para você praticar antes de atender alguém.</p>
+      </details>
+      <details>
+        <summary>Funciona em qualquer vidro?<svg class="i" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+        <p class="faq-a">Não. O polimento trata marcas superficiais, como marca de palheta, manchas de água dura e micro-riscos. Risco profundo, trinca e lasca não são casos de polimento. O guia ensina a avaliar cada vidro antes de começar.</p>
+      </details>
+      <details>
+        <summary>E se eu estragar um vidro?<svg class="i" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+        <p class="faq-a">Todo serviço em vidro tem risco, e nenhum material elimina esse risco. O guia ensina a reduzi-lo: teste em área pequena, controle de calor, pasta úmida e critérios para recusar. Por isso a recomendação é treinar em um vidro de teste primeiro. A execução é responsabilidade de quem realiza o serviço.</p>
+      </details>
+      <details>
+        <summary>Preciso de muito dinheiro para começar?<svg class="i" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+        <p class="faq-a">Depende do que você já tem. O guia apresenta os materiais do processo para você planejar a compra com calma e evitar o que não precisa. Os valores variam conforme a marca e a região.</p>
+      </details>
+      <details>
+        <summary>Como recebo?<svg class="i" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+        <p class="faq-a">Por e-mail, logo após a confirmação do pagamento. O guia é um PDF que abre no celular e no computador. Se você adicionar o complemento, a planilha em Excel e o kit em PDF chegam junto.</p>
+      </details>
+      <details>
+        <summary>Tem garantia?<svg class="i" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+        <p class="faq-a">Sim. São 7 dias. Se o material não for para você, peça a devolução nesse prazo e receba o valor de volta.</p>
+      </details>
+      <details>
+        <summary>Isso garante resultado financeiro?<svg class="i" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+        <p class="faq-a">Não. O Vidro Novo é um material educativo. Ele ensina o processo, os cuidados de segurança e uma forma clara de calcular preço. O que você vai alcançar depende da sua prática, do seu equipamento e do estado de cada vidro.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 15. CTA FINAL + AVISO LEGAL ============ -->
+<section class="sec final" id="cta-final">
+  <div class="wrap wrap--narrow">
+    <h2 class="reveal">Vidro limpo começa com processo</h2>
+    <p class="lead reveal">O guia completo por R$ 14,90, com entrega imediata e garantia de 7 dias.</p>
+    <a class="btn reveal" href="#oferta"><span>Quero o guia por <span class="nw">R$&nbsp;14,90</span></span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    <p class="micro reveal">Pagamento único, sem mensalidade.</p>
+
+    <div class="legal reveal" role="note" aria-label="Aviso legal">
+      <p><b>Aviso:</b> o Vidro Novo é um material educativo. Os resultados dependem de prática, do equipamento utilizado e do estado de cada vidro. Este material não substitui as instruções do fabricante dos equipamentos e produtos.</p>
+      <p>Não há promessa de ganho financeiro. O simulador desta página é um exemplo ilustrativo de cálculo.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ RODAPÉ ============ -->
+<!-- EDITAR: troque os placeholders entre chaves pelos seus dados reais. -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round"><path d="M3.5 15.5a8.5 8.5 0 0117 0" stroke="#3CC8E8" stroke-width="2.4"/><path d="M12 19.5l4.5-9" stroke="#E8F8FD" stroke-width="2"/></svg>
+      </span>
+      Vidro Novo
+    </div>
+    <nav class="foot-nav" aria-label="Rodapé">
+      <a href="{{LINK_POLITICA_PRIVACIDADE}}">Política de privacidade</a>
+      <a href="{{LINK_TERMOS_DE_USO}}">Termos de uso</a>
+      <a href="mailto:{{EMAIL_CONTATO}}">Contato: {{EMAIL_CONTATO}}</a>
+    </nav>
+    <small>{{RAZAO_SOCIAL}} · CNPJ {{CNPJ}}</small>
+    <small>© <span id="ano">2026</span> Vidro Novo. Todos os direitos reservados.</small>
+    <small>Este site não é afiliado ao Facebook, ao Instagram nem à Meta Platforms, Inc.</small>
+  </div>
+</footer>
+
+<!-- ============ BOTÃO FIXO NO RODAPÉ (só no celular) ============ -->
+<div class="sticky" id="sticky">
+  <a class="btn btn--block" href="#oferta"><span>Quero o guia por <span class="nw">R$&nbsp;14,90</span></span></a>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var d = document;
+  var reduz = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var temIO = 'IntersectionObserver' in window;
+  function $(id) { return d.getElementById(id); }
+  function brl(n) { return n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); }
+
+  /* ---------- Ano do rodapé ---------- */
+  var ano = $('ano'); if (ano) ano.textContent = new Date().getFullYear();
+
+  /* ---------- Revelação ao rolar + contagem animada ---------- */
+  function contar(el) {
+    var alvo = parseInt(el.getAttribute('data-count'), 10);
+    if (reduz || !alvo) return;
+    var inicio = null, dur = 900 + alvo * 30;
+    el.textContent = '0';
+    function passo(t) {
+      if (inicio === null) inicio = t;
+      var p = Math.min((t - inicio) / dur, 1);
+      el.textContent = Math.round(alvo * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(passo);
+    }
+    requestAnimationFrame(passo);
+  }
+  var revelar = d.querySelectorAll('.reveal');
+  var contadores = d.querySelectorAll('[data-count]');
+  if (temIO) {
+    var ioRev = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); ioRev.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    revelar.forEach(function (el) { ioRev.observe(el); });
+
+    var ioNum = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (e.isIntersecting) { contar(e.target); ioNum.unobserve(e.target); }
+      });
+    }, { threshold: 0.6 });
+    contadores.forEach(function (el) { ioNum.observe(el); });
+  } else {
+    revelar.forEach(function (el) { el.classList.add('is-in'); });
+  }
+
+  /* ---------- Antes e depois (toque, mouse e teclado) ---------- */
+  (function () {
+    var ba = $('ba'); if (!ba) return;
+    var antes = ba.querySelector('.ba-before');
+    var alca = ba.querySelector('.ba-handle');
+    var range = $('ba-range');
+    var pos = 50, arrastando = false;
+
+    function aplicar(p) {
+      pos = Math.max(0, Math.min(100, p));
+      var corte = 'inset(0 ' + (100 - pos) + '% 0 0)';
+      antes.style.webkitClipPath = corte;
+      antes.style.clipPath = corte;
+      alca.style.transform = 'translate3d(' + (ba.clientWidth * pos / 100) + 'px,0,0)';
+      range.value = Math.round(pos);
+      range.setAttribute('aria-valuetext', Math.round(pos) + '% da imagem mostrando o antes');
+    }
+    function doPonteiro(e) {
+      var r = ba.getBoundingClientRect();
+      aplicar((e.clientX - r.left) / r.width * 100);
+    }
+    ba.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      arrastando = true;
+      try { ba.setPointerCapture(e.pointerId); } catch (err) {}
+      doPonteiro(e);
+    });
+    ba.addEventListener('pointermove', function (e) { if (arrastando) doPonteiro(e); });
+    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (ev) {
+      ba.addEventListener(ev, function () { arrastando = false; });
+    });
+    range.addEventListener('input', function () { aplicar(parseFloat(range.value)); });
+    window.addEventListener('resize', function () { aplicar(pos); });
+    aplicar(pos);
+  })();
+
+  /* ---------- Simulador de preço do serviço ----------
+     custo_base = horas * valor_hora + material + deslocamento
+     preço      = custo_base * (1 + margem) / (1 - imposto)            */
+  (function () {
+    var form = $('sim'); if (!form) return;
+    var campos = { hora: $('s-hora'), horas: $('s-horas'), mat: $('s-mat'), desl: $('s-desl'), margem: $('s-margem'), imp: $('s-imp') };
+    var sPreco = $('s-preco'), sBase = $('s-base'), sMargem = $('s-vmargem'), sImp = $('s-vimp'), sErro = $('s-erro');
+
+    function num(el) {
+      var v = String(el.value).trim().replace(/\s/g, '');
+      if (v.indexOf(',') > -1) v = v.replace(/\./g, '').replace(',', '.'); /* 1.234,56 -> 1234.56 */
+      var n = parseFloat(v);
+      return isFinite(n) && n > 0 ? n : 0;
+    }
+    function calcular() {
+      var base = num(campos.horas) * num(campos.hora) + num(campos.mat) + num(campos.desl);
+      var margem = num(campos.margem) / 100;
+      var imposto = num(campos.imp) / 100;
+      var invalido = imposto >= 1;
+      campos.imp.setAttribute('aria-invalid', invalido ? 'true' : 'false');
+      sErro.hidden = !invalido;
+      sBase.textContent = brl(base);
+      sMargem.textContent = brl(base * margem);
+      if (invalido) { sPreco.textContent = 'R$ --'; sImp.textContent = 'R$ --'; return; }
+      var preco = base * (1 + margem) / (1 - imposto);
+      sPreco.textContent = brl(preco);
+      sImp.textContent = brl(preco * imposto);
+    }
+    form.addEventListener('input', calcular);
+    calcular();
+  })();
+
+  /* ---------- Order bump: troca o link, o texto e o total ---------- */
+  var btnCheckout = $('btn-checkout');
+  var bump = $('bump');
+  (function () {
+    if (!btnCheckout || !bump) return;
+    var linkGuia = btnCheckout.getAttribute('href');
+    var linkBump = btnCheckout.getAttribute('data-href-bump');
+    var texto = $('btn-checkout-texto'), total = $('total-valor'), caixa = $('bump-box');
+    function sincronizar() {
+      var on = bump.checked;
+      btnCheckout.setAttribute('href', on ? linkBump : linkGuia);
+      texto.textContent = on ? 'Quero o Vidro Novo + complemento por R$\u00a024,80' : 'Quero o Vidro Novo por R$\u00a014,90';
+      total.textContent = on ? 'R$\u00a024,80' : 'R$\u00a014,90';
+      caixa.classList.toggle('is-on', on);
+    }
+    bump.addEventListener('change', sincronizar);
+    window.addEventListener('pageshow', sincronizar); /* mantém coerente ao voltar do checkout */
+    sincronizar();
+  })();
+
+  /* ---------- Pixel do Meta: InitiateCheckout no clique de compra ----------
+     Só dispara se o Pixel estiver ativo (bloco comentado no <head>).
+     EDITAR · CAPI (API de Conversões): é enviada pelo servidor, não por esta página.
+     Se a sua plataforma de checkout tem integração com Pixel e CAPI, configure por lá.
+     O eventID abaixo serve para deduplicar o evento do navegador com o do servidor,
+     caso você envie o mesmo evento pelos dois caminhos.                              */
+  if (btnCheckout) {
+    btnCheckout.addEventListener('click', function () {
+      if (typeof window.fbq !== 'function') return;
+      var comBump = !!(bump && bump.checked);
+      var idEvento = 'ic-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8);
+      window.fbq('track', 'InitiateCheckout', {
+        content_name: comBump ? 'Vidro Novo + complemento' : 'Vidro Novo',
+        value: comBump ? 24.80 : 14.90,
+        currency: 'BRL'
+      }, { eventID: idEvento });
+    });
+  }
+
+  /* ---------- Links ainda com placeholder não navegam (evita página de erro) ---------- */
+  d.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href]') : null;
+    if (a && a.getAttribute('href').indexOf('{{') > -1) {
+      e.preventDefault();
+      if (window.console) console.warn('Link ainda não configurado: ' + a.getAttribute('href'));
+    }
+  });
+
+  /* ---------- Botão fixo do celular ----------
+     Aparece depois do hero. Some quando a oferta, o CTA final ou o rodapé estão na tela
+     e enquanto a pessoa digita no simulador (para não cobrir os campos).               */
+  (function () {
+    var barra = $('sticky'), hero = $('topo');
+    if (!barra || !hero || !temIO) return;
+    var heroVisivel = true, digitando = false, ocultar = {};
+    function atualizar() {
+      var algumVisivel = false;
+      for (var k in ocultar) { if (ocultar[k]) algumVisivel = true; }
+      barra.classList.toggle('is-on', !heroVisivel && !algumVisivel && !digitando);
+    }
+    new IntersectionObserver(function (es) { heroVisivel = es[0].isIntersecting; atualizar(); }).observe(hero);
+    var ioAlvos = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { ocultar[e.target.id || e.target.tagName] = e.isIntersecting; });
+      atualizar();
+    }, { threshold: 0.02 });
+    [$('oferta'), $('cta-final'), d.querySelector('.foot')].forEach(function (el) { if (el) ioAlvos.observe(el); });
+    var sim = $('sim');
+    if (sim) {
+      sim.addEventListener('focusin', function () { digitando = true; atualizar(); });
+      sim.addEventListener('focusout', function () { digitando = false; atualizar(); });
+    }
+  })();
+})();
+</script>
+</body>
+</html>

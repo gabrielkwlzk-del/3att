@@ -163,18 +163,21 @@ export async function runAssistant(input: {
   topic: Topic;
   property: PropertyRow | null;
   knowledge: KnowledgeChunk[];
+  /** Modelo escolhido pelo plano; vazio usa AI_MODEL. */
+  model?: string;
   signal?: AbortSignal;
   onEvent: (event: AssistantEvent) => void;
 }): Promise<AssistantResult> {
   const { messages, topic, property, knowledge, signal, onEvent } = input;
-  const model = serverEnv.aiModel;
+  const model = input.model || serverEnv.aiModel;
   const useFallback = serverEnv.aiRefusalFallback && FALLBACK_MODELS.has(model);
   const sharedProperty = property?.share_with_ai ? property : null;
 
   const tools: Parameters<Anthropic["beta"]["messages"]["toolRunner"]>[0]["tools"] = [
     weatherTool(sharedProperty, onEvent),
   ];
-  if (serverEnv.aiWebSearch) {
+  // A busca web dinâmica não é oferecida no Haiku; nele o assistente responde sem ela.
+  if (serverEnv.aiWebSearch && !model.includes("haiku")) {
     tools.push({
       type: "web_search_20260209",
       name: "web_search",

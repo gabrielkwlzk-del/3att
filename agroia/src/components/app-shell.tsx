@@ -36,7 +36,16 @@ function isActive(pathname: string, href: string) {
   return href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 }
 
-export function AppShell({ children, userEmail }: { children: React.ReactNode; userEmail: string }) {
+export function AppShell({
+  children,
+  userEmail,
+  planBadge,
+}: {
+  children: React.ReactNode;
+  userEmail: string;
+  /** Texto do plano atual (null = assinaturas desligadas). */
+  planBadge?: string | null;
+}) {
   const pathname = usePathname();
   const inChat = pathname === "/chat" || pathname.startsWith("/chat/");
   const [recents, setRecents] = useState<Recent[]>([]);
@@ -117,6 +126,7 @@ export function AppShell({ children, userEmail }: { children: React.ReactNode; u
           <span className="min-w-0 flex-1 truncate px-2 text-xs text-subtle" title={userEmail}>
             {userEmail}
           </span>
+          {planBadge && <PlanPill label={planBadge} />}
           <ThemeToggle />
           <form action="/auth/sair" method="post">
             <button
@@ -157,6 +167,7 @@ export function AppShell({ children, userEmail }: { children: React.ReactNode; u
               <Link href="/" className="flex-1" aria-label="AgroIA – início">
                 <Logo />
               </Link>
+              {planBadge && <PlanPill label={planBadge} />}
               <ThemeToggle />
             </>
           )}
@@ -194,6 +205,18 @@ export function AppShell({ children, userEmail }: { children: React.ReactNode; u
         )}
       </div>
     </div>
+  );
+}
+
+function PlanPill({ label }: { label: string }) {
+  return (
+    <Link
+      href="/plano"
+      className="inline-flex h-8 shrink-0 items-center rounded-full bg-brand-soft px-3 text-xs font-medium text-brand transition hover:brightness-95"
+      aria-label={`Seu plano: ${label}. Abrir página do plano`}
+    >
+      {label}
+    </Link>
   );
 }
 

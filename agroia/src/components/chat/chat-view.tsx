@@ -36,6 +36,7 @@ export function ChatView({
   const [conversationId, setConversationId] = useState(initialConversationId);
   const [busy, setBusy] = useState(false);
   const [banner, setBanner] = useState<string | null>(null);
+  const [upgradeUrl, setUpgradeUrl] = useState<string | null>(null);
   const [showJump, setShowJump] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -89,6 +90,7 @@ export function ChatView({
         return false;
       }
       setBanner(null);
+      setUpgradeUrl(null);
       setBusy(true);
       stickRef.current = true;
 
@@ -150,9 +152,10 @@ export function ChatView({
         });
 
         if (!res.ok) {
-          const data = (await res.json().catch(() => ({}))) as { error?: string };
+          const data = (await res.json().catch(() => ({}))) as { error?: string; upgradeUrl?: string };
           setMessages((prev) => prev.filter((m) => m.id !== userTempId && m.id !== assistantTempId));
           setBanner(data.error ?? "Não foi possível enviar sua mensagem.");
+          setUpgradeUrl(res.status === 402 && data.upgradeUrl ? data.upgradeUrl : null);
           return false;
         }
 
@@ -292,6 +295,11 @@ export function ChatView({
           <div role="alert" className="mx-auto mb-2 flex max-w-3xl items-start gap-2 rounded-2xl bg-warning-soft px-3.5 py-2.5 text-sm text-warning">
             <Info className="mt-0.5 size-4 shrink-0" aria-hidden />
             <span className="flex-1">{banner}</span>
+            {upgradeUrl && (
+              <Link href={upgradeUrl} className="shrink-0 font-semibold underline">
+                Ver planos
+              </Link>
+            )}
           </div>
         )}
         <Composer

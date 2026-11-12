@@ -17,6 +17,7 @@ Assistente de inteligência artificial para produtores rurais brasileiros: tira 
 | Pecuária | Seção por espécie com perguntas frequentes e avisos de limite (veterinário, doenças de notificação obrigatória) | Claude |
 | Perfil da propriedade | Nome, município/UF, coordenadas, área, atividade, sistema, culturas, animais, observações e **consentimento** para uso na IA | Supabase + IBGE (lista de municípios) |
 | Referências | Base de conhecimento técnico (RAG) com busca textual em português + vetorial opcional; busca na web restrita a domínios oficiais | Postgres/pgvector, Voyage AI (opcional), busca web da Anthropic |
+| Assinaturas (Cakto) | Planos Semente/Produtor/Fazenda, teste grátis de 3 dias (começa na 1ª pergunta), limites mensais de perguntas e fotos, página `/plano`, webhook de pagamento. **Desligado por padrão** (`BILLING_ENABLED`); checkout e mapeamento do webhook ficam por sua conta | Cakto (a configurar) |
 | Autenticação | E-mail e senha ou link de acesso por e-mail | Supabase Auth |
 | Modo claro/escuro, mobile-first, PWA instalável | | |
 
@@ -30,7 +31,7 @@ Nada é simulado: sem chave de IA o chat avisa que não está configurado; sem p
 - **Open-Meteo** para clima e geocodificação; **IBGE** para a lista de municípios
 - **ElevenLabs** (opcional) para transcrição e voz
 
-Arquitetura, modelo de dados e decisões: [`docs/ARQUITETURA.md`](docs/ARQUITETURA.md).
+Arquitetura, modelo de dados e decisões: [`docs/ARQUITETURA.md`](docs/ARQUITETURA.md). Planos, preços, teste grátis e como ligar a Cakto: [`docs/ASSINATURAS.md`](docs/ASSINATURAS.md).
 
 ## Como rodar
 
@@ -43,6 +44,7 @@ Pré-requisitos: Node.js 20.9+ e um projeto no [Supabase](https://supabase.com).
 2. **Crie o banco**: no Supabase, abra *SQL Editor* e execute o conteúdo de
    [`supabase/migrations/20261112000000_init.sql`](supabase/migrations/20261112000000_init.sql)
    (ou `supabase db push` com a CLI). Isso cria tabelas, políticas RLS, a função de busca da base de conhecimento e o bucket privado `plant-photos`.
+   Em seguida, execute também [`20261113000000_billing.sql`](supabase/migrations/20261113000000_billing.sql) (assinaturas e teste grátis; inofensiva enquanto `BILLING_ENABLED=false`).
 3. **Configure a autenticação** (*Authentication › URL Configuration*):
    - *Site URL*: a URL do app (ex.: `http://localhost:3000`)
    - *Redirect URLs*: `http://localhost:3000/auth/callback` e a URL de produção equivalente

@@ -42,11 +42,46 @@ export const serverEnv = {
   elevenLabsTtsModel: (process.env.ELEVENLABS_TTS_MODEL ?? "eleven_multilingual_v2").trim(),
   elevenLabsVoiceId: (process.env.ELEVENLABS_VOICE_ID ?? "").trim(),
 
+  // Modelo por plano. Vazio = usa AI_MODEL. A foto usa AI_MODEL_VISION (análise visual pede o modelo mais forte).
+  aiModelSemente: (process.env.AI_MODEL_SEMENTE ?? "").trim(),
+  aiModelProdutor: (process.env.AI_MODEL_PRODUTOR ?? "").trim(),
+  aiModelFazenda: (process.env.AI_MODEL_FAZENDA ?? "").trim(),
+  aiModelVision: (process.env.AI_MODEL_VISION ?? "").trim(),
+
+  // Assinaturas (Cakto). Desligado por padrão: sem BILLING_ENABLED=true ninguém é limitado.
+  billingEnabled: readBool(process.env.BILLING_ENABLED, false),
+  caktoWebhookToken: process.env.CAKTO_WEBHOOK_TOKEN ?? "",
+  supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY ?? "",
+
   rateLimitPer10Min: readInt(process.env.RATE_LIMIT_MESSAGES_PER_10_MIN, 20, 1, 500),
 
   whatsappEnabled: readBool(process.env.WHATSAPP_ENABLED, false),
   whatsappVerifyToken: process.env.WHATSAPP_VERIFY_TOKEN ?? "",
 };
+
+/** Links de checkout da Cakto por plano e periodicidade. Só aceita https://. */
+export type CheckoutLinks = Partial<Record<`${"produtor" | "fazenda"}_${"month" | "year"}`, string>>;
+
+export function getCheckoutLinks(): CheckoutLinks {
+  const entries: [keyof CheckoutLinks, string | undefined][] = [
+    ["produtor_month", process.env.CAKTO_CHECKOUT_URL_PRODUTOR_MENSAL],
+    ["produtor_year", process.env.CAKTO_CHECKOUT_URL_PRODUTOR_ANUAL],
+    ["fazenda_month", process.env.CAKTO_CHECKOUT_URL_FAZENDA_MENSAL],
+    ["fazenda_year", process.env.CAKTO_CHECKOUT_URL_FAZENDA_ANUAL],
+  ];
+  const links: CheckoutLinks = {};
+  for (const [key, value] of entries) {
+    const url = value?.trim();
+    if (url?.startsWith("https://")) links[key] = url;
+  }
+  return links;
+}
+
+/** Link da área de gerenciamento/cancelamento da assinatura (opcional). */
+export function getManageSubscriptionUrl(): string | null {
+  const url = process.env.CAKTO_MANAGE_URL?.trim();
+  return url?.startsWith("https://") ? url : null;
+}
 
 export function isSupabaseConfigured(): boolean {
   return Boolean(serverEnv.supabaseUrl && serverEnv.supabaseAnonKey);

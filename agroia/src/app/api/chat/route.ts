@@ -4,6 +4,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { getAuthContext } from "@/lib/supabase/server";
 import { isAiConfigured } from "@/lib/env";
 import { checkMessageRateLimit } from "@/lib/rate-limit";
+import { gateMessage, getEntitlements, pickModel, startTrialIfNeeded } from "@/lib/billing/entitlements";
 import { runAssistant, describeAiError, type AssistantEvent } from "@/lib/ai/assistant";
 import { searchKnowledge, formatKnowledgeForPrompt } from "@/lib/ai/knowledge";
 import { TOPICS, type Attachment, type MessageRow, type PropertyRow, type Topic } from "@/lib/domain";
@@ -69,6 +70,18 @@ export async function POST(request: Request) {
       { "Retry-After": String(limit.retryAfterSeconds) },
     );
   }
+
+  // Assinatura: o teste de 3 dias começa na primeira pergunta; depois confere os limites do plano.
+  // Com BILLING_ENABLED desligado nada é limitado.
+  const entitlements = await startTrialIfNeeded(supabase, await getEntitlements(supabase));
+  const gate = gateMessage(entitlements, attachments.length);
+  if (!gate.ok) {
+    return Response.json(
+      { error: gate.message, code: gate.code, upgradeUrl: "/plano" },
+      { status: 402 },
+    );
+  }
+  const model = pickModel(entitlements.access.plan, attachments.length > 0);
 
   // Conversa: cria uma nova ou confirma que pertence ao usuário.
   let conversationId = body.conversationId;
@@ -152,6 +165,7 @@ export async function POST(request: Request) {
           topic,
           property: (property as PropertyRow | null) ?? null,
           knowledge,
+          model,
           signal: request.signal,
           onEvent,
         });

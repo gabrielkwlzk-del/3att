@@ -16,6 +16,8 @@ import { TOPIC_LABELS, type ConversationRow } from "@/lib/domain";
 import { AssistantAvatar } from "@/components/brand/logo";
 import { MiniWeather } from "@/components/weather/mini-weather";
 import { QuickAsk } from "@/components/quick-ask";
+import { PlanBanner } from "@/components/billing/plan-banner";
+import { getEntitlements } from "@/lib/billing/entitlements";
 
 const QUICK_ACTIONS = [
   {
@@ -57,8 +59,9 @@ const QUICK_ACTIONS = [
 
 export default async function HomePage() {
   const { supabase, user } = await getAuthContext();
-  const [property, { data: recent }] = await Promise.all([
+  const [property, ent, { data: recent }] = await Promise.all([
     getProperty(supabase, user!.id),
+    getEntitlements(supabase),
     supabase.from("conversations").select("id, title, topic, updated_at").order("updated_at", { ascending: false }).limit(3),
   ]);
   const conversations = (recent ?? []) as Pick<ConversationRow, "id" | "title" | "topic" | "updated_at">[];
@@ -75,6 +78,7 @@ export default async function HomePage() {
         <div className="mt-5">
           <QuickAsk />
         </div>
+        {ent.enabled && <PlanBanner access={ent.access} usage={ent.usage} />}
       </section>
 
       <section className="mt-7" aria-labelledby="acoes-rapidas">

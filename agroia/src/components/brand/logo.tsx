@@ -1,8 +1,16 @@
-/** Marca AgroIA (arquivo public/logo.png). */
-export function LogoMark({ className = "size-8" }: { className?: string }) {
+/**
+ * Marca AgroIA. No modo claro aparece a versão com fundo branco (public/logo.png);
+ * no modo escuro, a versão com fundo preto (public/logo-dark.png).
+ * A troca é feita por CSS (classes dark:), seguindo o data-theme do <html>.
+ */
+export function LogoMark({ className = "size-8", rounded = "rounded-[22%]" }: { className?: string; rounded?: string }) {
   return (
-    // eslint-disable-next-line @next/next/no-img-element -- ícone estático local
-    <img src="/logo.png" alt="" aria-hidden="true" width={1254} height={1254} className={`${className} rounded-[22%] object-cover`} />
+    <span className={`${className} ${rounded} inline-block shrink-0 overflow-hidden`}>
+      {/* eslint-disable-next-line @next/next/no-img-element -- ícone estático local */}
+      <img src="/logo.png" alt="" aria-hidden="true" width={1254} height={1254} className="block size-full object-cover dark:hidden" />
+      {/* eslint-disable-next-line @next/next/no-img-element -- ícone estático local */}
+      <img src="/logo-dark.png" alt="" aria-hidden="true" width={1254} height={1254} className="hidden size-full object-cover dark:block" />
+    </span>
   );
 }
 
@@ -18,8 +26,5 @@ export function Logo({ className = "" }: { className?: string }) {
 }
 
 export function AssistantAvatar({ className = "size-7" }: { className?: string }) {
-  return (
-    // eslint-disable-next-line @next/next/no-img-element -- ícone estático local
-    <img src="/logo.png" alt="" aria-hidden="true" width={1254} height={1254} className={`${className} shrink-0 rounded-full object-cover`} />
-  );
+  return <LogoMark className={className} rounded="rounded-full" />;
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CloudSun, Leaf, MessageSquareText, PawPrint } from "lucide-react";
-import { Logo } from "@/components/brand/logo";
+import { Logo, LogoMark } from "@/components/brand/logo";
 import { LoginForm } from "./login-form";
 
 export const metadata: Metadata = { title: "Entrar" };
@@ -32,8 +32,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/entrar">) 
         />
         <div className="relative">
           <span className="inline-flex items-center gap-2 text-lg font-semibold">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo.png" alt="" aria-hidden="true" width={1254} height={1254} className="size-9 rounded-[22%] object-cover" />
+            <LogoMark className="size-9" />
             AgroIA
           </span>
         </div>

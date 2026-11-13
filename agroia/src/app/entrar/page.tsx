@@ -32,12 +32,8 @@ export default async function LoginPage({ searchParams }: PageProps<"/entrar">) 
         />
         <div className="relative">
           <span className="inline-flex items-center gap-2 text-lg font-semibold">
-            <svg viewBox="0 0 64 64" className="size-9" aria-hidden>
-              <rect width="64" height="64" rx="16" fill="#f1f5ef" fillOpacity="0.12" />
-              <path d="M32 50c0-14 6-24 18-28-1 13-7 22-18 28z" fill="#8fd19e" />
-              <path d="M32 50c0-11-5-19-15-23 1 11 6 18 15 23z" fill="#d9ab55" />
-              <path d="M32 52V24" stroke="#f5f3ec" strokeWidth="3" strokeLinecap="round" />
-            </svg>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo.png" alt="" aria-hidden="true" width={1254} height={1254} className="size-9 rounded-[22%] object-cover" />
             AgroIA
           </span>
         </div>

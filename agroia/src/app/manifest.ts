@@ -7,9 +7,11 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "Assistente de IA para agricultura e pecuária brasileira.",
     start_url: "/",
     display: "standalone",
-    background_color: "#f5f3ec",
-    theme_color: "#14532d",
+    background_color: "#0b130e",
+    theme_color: "#0b130e",
     lang: "pt-BR",
-    icons: [{ src: "/icon.svg", sizes: "any", type: "image/svg+xml", purpose: "any" }],
+    icons: [
+      { src: "/logo.png", sizes: "1254x1254", type: "image/png", purpose: "any" },
+    ],
   };
 }

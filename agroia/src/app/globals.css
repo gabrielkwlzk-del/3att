@@ -28,6 +28,10 @@
   --info: #1d5fa8;
   --info-soft: #e8f0fa;
   --ring: rgb(20 83 45 / 0.35);
+  /* Séries dos gráficos (validadas para daltonismo): receita, despesa, investimento */
+  --viz-1: #2a78d6;
+  --viz-2: #eb6834;
+  --viz-3: #1baf7a;
   --shadow: 0 1px 2px rgb(20 35 27 / 0.06), 0 8px 24px -12px rgb(20 35 27 / 0.18);
 }
 
@@ -56,6 +60,9 @@
   --info: #7cb4f5;
   --info-soft: #132538;
   --ring: rgb(92 184 122 / 0.45);
+  --viz-1: #3987e5;
+  --viz-2: #d95926;
+  --viz-3: #199e70;
   --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 10px 30px -14px rgb(0 0 0 / 0.6);
 }
 
@@ -82,6 +89,9 @@
   --color-warning-soft: var(--warning-soft);
   --color-info: var(--info);
   --color-info-soft: var(--info-soft);
+  --color-viz-1: var(--viz-1);
+  --color-viz-2: var(--viz-2);
+  --color-viz-3: var(--viz-3);
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --shadow-card: var(--shadow);
@@ -262,5 +272,33 @@ body {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+}
+
+/* Impressão / "Salvar como PDF": fundo branco, sem sombras e sem quebrar cartões no meio */
+@media print {
+  :root,
+  [data-theme="dark"] {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-2: #f3f3f0;
+    --fg: #111111;
+    --muted: #444444;
+    --subtle: #666666;
+    --line: #d9d9d4;
+    color-scheme: light;
+  }
+  html,
+  body {
+    background: #fff !important;
+  }
+  section,
+  figure,
+  li {
+    break-inside: avoid;
+  }
+  * {
+    box-shadow: none !important;
+    animation: none !important;
   }
 }

@@ -45,6 +45,10 @@ Storage: bucket `plant-photos` privado, 5 MB por arquivo, JPEG/PNG/WebP; políti
 
 A migração foi validada em Postgres (PGlite) com stubs de `auth`/`storage`: isolamento entre usuários em leitura, escrita, atualização e Storage; restrições de UF; busca textual, vetorial e consulta só com *stopwords*.
 
+## Gestão da propriedade (resumo)
+
+Tabelas por usuário com RLS: `fields`, `seasons`, `harvests`, `transactions`, `inventory_items`/`inventory_movements`, `machines`/`machine_logs`, `irrigation_logs`, `tasks`, `soil_reports`, `market_quotes`/`market_alerts`, `yield_forecasts`, `report_summaries`. Saldo de estoque e horímetro são mantidos por **gatilhos** (o app não recalcula). Cálculos em `src/lib/farm/*` são funções puras com testes (`npm test`); as páginas são Server Components e as gravações são Server Actions validadas com Zod, que sempre conferem o usuário. Detalhes e limites: [`GESTAO.md`](GESTAO.md).
+
 ## Fluxos principais
 
 ### Chat (`POST /api/chat`, Server-Sent Events)

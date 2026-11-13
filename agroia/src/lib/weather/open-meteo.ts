@@ -15,8 +15,21 @@ import type {
  * inventados ou "padrão".
  */
 
-const FORECAST_URL = "https://api.open-meteo.com/v1/forecast";
-const GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search";
+/**
+ * Endereços da Open-Meteo. O uso gratuito é só para fins não comerciais: com assinaturas pagas,
+ * contrate o plano comercial deles e configure OPEN_METEO_API_KEY (e, se pedirem, os endereços
+ * customer-api.open-meteo.com abaixo). Também permite apontar para uma instância própria.
+ */
+const FORECAST_URL = process.env.OPEN_METEO_FORECAST_URL?.trim() || "https://api.open-meteo.com/v1/forecast";
+const GEOCODING_URL = process.env.OPEN_METEO_GEOCODING_URL?.trim() || "https://geocoding-api.open-meteo.com/v1/search";
+const API_KEY = process.env.OPEN_METEO_API_KEY?.trim() || "";
+
+/** Query string com a chave da API (quando configurada). */
+function query(params: Record<string, string>): string {
+  const q = new URLSearchParams(params);
+  if (API_KEY) q.set("apikey", API_KEY);
+  return q.toString();
+}
 const TIMEOUT_MS = 8000;
 
 export class WeatherUnavailableError extends Error {
@@ -77,7 +90,7 @@ export async function fetchForecast(
     throw new WeatherUnavailableError("Coordenadas inválidas para a previsão.");
   }
 
-  const params = new URLSearchParams({
+  const params = query({
     latitude: latitude.toFixed(4),
     longitude: longitude.toFixed(4),
     timezone: "auto",
@@ -352,7 +365,7 @@ export async function geocodeMunicipality(
 ): Promise<{ latitude: number; longitude: number; label: string } | null> {
   const name = municipality.trim();
   if (!name) return null;
-  const params = new URLSearchParams({
+  const params = query({
     name,
     count: "20",
     language: "pt",
@@ -388,4 +401,88 @@ export async function geocodeMunicipality(
     longitude: best.longitude,
     label: `${best.name} – ${uf}`,
   };
+}
+
+/* ------------------------------------------------------------------ */
+/* Séries diárias para irrigação e produtividade                       */
+/* ------------------------------------------------------------------ */
+
+export type AgroDay = { date: string; et0: number | null; rain: number | null; tmax: number | null };
+
+type DailyPayload = {
+  utc_offset_seconds?: number;
+  daily?: {
+    time: string[];
+    et0_fao_evapotranspiration?: (number | null)[];
+    precipitation_sum?: (number | null)[];
+    temperature_2m_max?: (number | null)[];
+  };
+};
+
+const DAILY_VARS = "et0_fao_evapotranspiration,precipitation_sum,temperature_2m_max";
+
+async function getJson(url: string, revalidate: number): Promise<DailyPayload> {
+  try {
+    const res = await fetch(url, { signal: AbortSignal.timeout(TIMEOUT_MS + 4000), next: { revalidate } });
+    if (!res.ok) throw new WeatherUnavailableError(`Serviço meteorológico respondeu ${res.status}.`);
+    return (await res.json()) as DailyPayload;
+  } catch (error) {
+    if (error instanceof WeatherUnavailableError) throw error;
+    throw new WeatherUnavailableError();
+  }
+}
+
+function toDays(payload: DailyPayload): AgroDay[] {
+  const d = payload.daily;
+  if (!d?.time?.length) return [];
+  return d.time.map((date, i) => ({
+    date,
+    et0: d.et0_fao_evapotranspiration?.[i] ?? null,
+    rain: d.precipitation_sum?.[i] ?? null,
+    tmax: d.temperature_2m_max?.[i] ?? null,
+  }));
+}
+
+/** Hoje (AAAA-MM-DD) no fuso do local, calculado a partir do deslocamento que a própria API informa. */
+function localToday(offsetSeconds: number | undefined): string {
+  return new Date(Date.now() + (offsetSeconds ?? 0) * 1000).toISOString().slice(0, 10);
+}
+
+/** Últimos `pastDays` dias (inclui hoje) e próximos `forecastDays` dias, para o balanço hídrico. */
+export async function fetchWaterInputs(latitude: number, longitude: number, pastDays = 7, forecastDays = 3): Promise<{ today: string; observed: AgroDay[]; forecast: AgroDay[] }> {
+  if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) throw new WeatherUnavailableError("Coordenadas inválidas.");
+  const params = query({
+    latitude: latitude.toFixed(4), longitude: longitude.toFixed(4), timezone: "auto", daily: DAILY_VARS,
+    past_days: String(Math.min(Math.max(pastDays, 1), 30)), forecast_days: String(Math.min(Math.max(forecastDays, 1), 7)),
+  });
+  const payload = await getJson(`${FORECAST_URL}?${params}`, 1800);
+  const days = toDays(payload);
+  if (!days.length) throw new WeatherUnavailableError("Resposta incompleta do serviço meteorológico.");
+  const today = localToday(payload.utc_offset_seconds);
+  return { today, observed: days.filter((d) => d.date <= today), forecast: days.filter((d) => d.date > today) };
+}
+
+const ARCHIVE_URL = process.env.OPEN_METEO_ARCHIVE_URL?.trim() || "https://archive-api.open-meteo.com/v1/archive";
+
+/**
+ * Histórico diário entre duas datas (AAAA-MM-DD), até hoje. Usa o arquivo histórico da Open-Meteo
+ * (defasagem de poucos dias) e completa os dias recentes com a série do modelo de previsão.
+ */
+export async function fetchDailyHistory(latitude: number, longitude: number, start: string, end: string): Promise<AgroDay[]> {
+  if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) throw new WeatherUnavailableError("Coordenadas inválidas.");
+  const base = { latitude: latitude.toFixed(4), longitude: longitude.toFixed(4), timezone: "auto", daily: DAILY_VARS };
+  const recent = await getJson(`${FORECAST_URL}?${query({ ...base, past_days: "10", forecast_days: "1" })}`, 3600);
+  const recentDays = toDays(recent);
+  const today = localToday(recent.utc_offset_seconds);
+  const firstRecent = recentDays[0]?.date ?? today;
+  const cappedEnd = end > today ? today : end;
+
+  const merged = new Map<string, AgroDay>();
+  if (start < firstRecent) {
+    const archiveEnd = new Date(Date.parse(firstRecent) - 86400000).toISOString().slice(0, 10);
+    const archive = await getJson(`${ARCHIVE_URL}?${query({ ...base, start_date: start, end_date: archiveEnd < cappedEnd ? archiveEnd : cappedEnd })}`, 86400);
+    for (const d of toDays(archive)) merged.set(d.date, d);
+  }
+  for (const d of recentDays) merged.set(d.date, d);
+  return [...merged.values()].filter((d) => d.date >= start && d.date <= cappedEnd).sort((a, b) => a.date.localeCompare(b.date));
 }

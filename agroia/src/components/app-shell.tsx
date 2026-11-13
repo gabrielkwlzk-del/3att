@@ -6,7 +6,9 @@ import { usePathname } from "next/navigation";
 import {
   ArrowLeft,
   CloudSun,
+  Ellipsis,
   Home,
+  LayoutGrid,
   LogOut,
   MessageSquareText,
   MessagesSquare,
@@ -19,13 +21,25 @@ import {
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { Logo } from "@/components/brand/logo";
+import { FARM_MODULES } from "@/lib/farm/modules";
 
+/** Menu lateral (desktop). A Gestão mostra seus módulos quando está aberta. */
 const NAV = [
   { href: "/", label: "Início", icon: Home },
   { href: "/conversas", label: "Conversas", icon: MessagesSquare },
+  { href: "/gestao", label: "Gestão", icon: LayoutGrid },
   { href: "/clima", label: "Clima", icon: CloudSun },
   { href: "/animais", label: "Animais", icon: PawPrint },
   { href: "/propriedade", label: "Propriedade", icon: Tractor },
+] as const;
+
+/** Barra inferior (celular): 5 destinos; o restante fica em "Mais". */
+const MOBILE_NAV = [
+  { href: "/", label: "Início", icon: Home, match: ["/"] },
+  { href: "/conversas", label: "Conversas", icon: MessagesSquare, match: ["/conversas"] },
+  { href: "/gestao", label: "Gestão", icon: LayoutGrid, match: ["/gestao"] },
+  { href: "/clima", label: "Clima", icon: CloudSun, match: ["/clima"] },
+  { href: "/mais", label: "Mais", icon: Ellipsis, match: ["/mais", "/animais", "/propriedade", "/plano", "/privacidade"] },
 ] as const;
 
 type Recent = { id: string; title: string };
@@ -70,9 +84,9 @@ export function AppShell({
   }, [pathname]);
 
   return (
-    <div className="flex h-dvh overflow-hidden">
+    <div className="flex h-dvh overflow-hidden print:block print:h-auto print:overflow-visible">
       {/* Barra lateral (tablet/desktop) */}
-      <aside className="hidden w-[272px] shrink-0 flex-col border-r border-line bg-surface/60 lg:flex">
+      <aside className="hidden w-[272px] shrink-0 flex-col border-r border-line bg-surface/60 lg:flex print:hidden">
         <div className="flex h-16 items-center px-5">
           <Link href="/" aria-label="AgroIA – início">
             <Logo />
@@ -88,16 +102,34 @@ export function AppShell({
         </div>
         <nav className="mt-4 space-y-0.5 px-3" aria-label="Principal">
           {NAV.map(({ href, label, icon: Icon }) => (
-            <Link
-              key={href}
-              href={href}
-              className={`flex h-10 items-center gap-3 rounded-2xl px-3 text-sm transition ${
-                isActive(pathname, href) ? "bg-brand-soft font-medium text-brand" : "text-muted hover:bg-surface-2 hover:text-fg"
-              }`}
-              aria-current={isActive(pathname, href) ? "page" : undefined}
-            >
-              <Icon className="size-[18px]" aria-hidden /> {label}
-            </Link>
+            <div key={href}>
+              <Link
+                href={href}
+                className={`flex h-10 items-center gap-3 rounded-2xl px-3 text-sm transition ${
+                  isActive(pathname, href) ? "bg-brand-soft font-medium text-brand" : "text-muted hover:bg-surface-2 hover:text-fg"
+                }`}
+                aria-current={pathname === href ? "page" : undefined}
+              >
+                <Icon className="size-[18px]" aria-hidden /> {label}
+              </Link>
+              {href === "/gestao" && isActive(pathname, "/gestao") && (
+                <ul className="mt-0.5 mb-1 ml-[22px] space-y-0.5 border-l border-line pl-3">
+                  {FARM_MODULES.map((m) => (
+                    <li key={m.href}>
+                      <Link
+                        href={m.href}
+                        className={`flex h-8 items-center rounded-xl px-2.5 text-[13px] transition ${
+                          isActive(pathname, m.href) ? "bg-surface-2 font-medium text-fg" : "text-muted hover:bg-surface-2 hover:text-fg"
+                        }`}
+                        aria-current={isActive(pathname, m.href) ? "page" : undefined}
+                      >
+                        {m.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           ))}
         </nav>
         <div className="mt-6 min-h-0 flex-1 overflow-y-auto px-3 scrollbar-thin">
@@ -141,9 +173,9 @@ export function AppShell({
         </div>
       </aside>
 
-      <div className="flex min-w-0 flex-1 flex-col">
+      <div className="flex min-w-0 flex-1 flex-col print:block">
         {/* Cabeçalho móvel */}
-        <header className="flex h-14 shrink-0 items-center gap-2 border-b border-line/70 bg-bg/90 px-3 backdrop-blur lg:hidden">
+        <header className="flex h-14 shrink-0 items-center gap-2 border-b border-line/70 bg-bg/90 px-3 backdrop-blur lg:hidden print:hidden">
           {inChat ? (
             <>
               <Link
@@ -173,18 +205,18 @@ export function AppShell({
           )}
         </header>
 
-        <main className="min-h-0 flex-1 overflow-y-auto scrollbar-thin" id="conteudo">
+        <main className="min-h-0 flex-1 overflow-y-auto scrollbar-thin print:overflow-visible" id="conteudo">
           {children}
         </main>
 
         {/* Navegação inferior (celular) */}
         {!inChat && (
           <nav
-            className="grid shrink-0 grid-cols-5 border-t border-line bg-surface/95 backdrop-blur lg:hidden pb-safe"
+            className="grid shrink-0 grid-cols-5 border-t border-line bg-surface/95 backdrop-blur lg:hidden pb-safe print:hidden"
             aria-label="Principal"
           >
-            {NAV.map(({ href, label, icon: Icon }) => {
-              const active = isActive(pathname, href);
+            {MOBILE_NAV.map(({ href, label, icon: Icon, match }) => {
+              const active = match.some((m) => isActive(pathname, m));
               return (
                 <Link
                   key={href}

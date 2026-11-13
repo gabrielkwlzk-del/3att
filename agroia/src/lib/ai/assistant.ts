@@ -3,6 +3,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { betaZodTool } from "@anthropic-ai/sdk/helpers/beta/zod";
 import { z } from "zod";
 import { serverEnv } from "@/lib/env";
+import { getAnthropic as getClient } from "./client";
 import { UFS, ufName, type PropertyRow, type Source, type Topic } from "@/lib/domain";
 import { BASE_SYSTEM_PROMPT, buildContextBlock } from "./system-prompt";
 import type { KnowledgeChunk } from "./knowledge";
@@ -58,14 +59,6 @@ const FALLBACK_MODELS = new Set([
 
 const REFUSAL_TEXT =
   "Não consigo ajudar com esse pedido. Se for uma dúvida sobre sua lavoura, seus animais ou o clima, tente reformular com mais detalhes.";
-
-let client: Anthropic | null = null;
-function getClient(): Anthropic {
-  if (!client) {
-    client = new Anthropic({ apiKey: serverEnv.anthropicApiKey, maxRetries: 2, timeout: 120_000 });
-  }
-  return client;
-}
 
 const UF_CODES = UFS.map((u) => u.sigla) as [string, ...string[]];
 

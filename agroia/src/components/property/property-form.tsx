@@ -18,6 +18,7 @@ const labelClass = "mb-1.5 block text-sm font-medium";
 
 export function PropertyForm({ property }: { property: PropertyRow | null }) {
   const [state, formAction, pending] = useActionState<SaveState, FormData>(saveProperty, null);
+  const [, startSave] = useTransition();
   const [uf, setUf] = useState(property?.state ?? "");
   const [municipios, setMunicipios] = useState<string[]>([]);
   const [coords, setCoords] = useState<{ lat: number; lon: number } | null>(null);
@@ -69,7 +70,16 @@ export function PropertyForm({ property }: { property: PropertyRow | null }) {
 
   return (
     <>
-      <form action={formAction} className="space-y-7" noValidate>
+      <form
+        onSubmit={(e) => {
+          // Envio por onSubmit: com o atributo `action`, o React 19 limpa os campos mesmo quando há erro de validação
+          e.preventDefault();
+          const data = new FormData(e.currentTarget);
+          startSave(() => formAction(data));
+        }}
+        className="space-y-7"
+        noValidate
+      >
         <fieldset className="space-y-4">
           <legend className="mb-3 text-lg font-semibold">Identificação e localização</legend>
           <div>

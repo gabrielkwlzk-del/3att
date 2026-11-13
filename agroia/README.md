@@ -18,6 +18,7 @@ Assistente de inteligência artificial para produtores rurais brasileiros: tira 
 | Perfil da propriedade | Nome, município/UF, coordenadas, área, atividade, sistema, culturas, animais, observações e **consentimento** para uso na IA | Supabase + IBGE (lista de municípios) |
 | Referências | Base de conhecimento técnico (RAG) com busca textual em português + vetorial opcional; busca na web restrita a domínios oficiais | Postgres/pgvector, Voyage AI (opcional), busca web da Anthropic |
 | Assinaturas (Cakto) | Planos Semente/Produtor/Fazenda, teste grátis de 3 dias (começa na 1ª pergunta), limites mensais de perguntas e fotos, página `/plano`, webhook de pagamento. **Desligado por padrão** (`BILLING_ENABLED`); checkout e mapeamento do webhook ficam por sua conta | Cakto (a configurar) |
+| Gestão da propriedade | Talhões e safras, financeiro (margem, custo/ha), estoque, máquinas, irrigação, tarefas, laudo de solo em PDF com IA, previsão de produtividade com incerteza, cotações com fonte e alertas, relatórios (CSV/PDF) | Dados do produtor + Open-Meteo + IA (veja [`docs/GESTAO.md`](docs/GESTAO.md)) |
 | Autenticação | E-mail e senha ou link de acesso por e-mail | Supabase Auth |
 | Modo claro/escuro, mobile-first, PWA instalável | | |
 
@@ -44,7 +45,7 @@ Pré-requisitos: Node.js 20.9+ e um projeto no [Supabase](https://supabase.com).
 2. **Crie o banco**: no Supabase, abra *SQL Editor* e execute o conteúdo de
    [`supabase/migrations/20261112000000_init.sql`](supabase/migrations/20261112000000_init.sql)
    (ou `supabase db push` com a CLI). Isso cria tabelas, políticas RLS, a função de busca da base de conhecimento e o bucket privado `plant-photos`.
-   Em seguida, execute também [`20261113000000_billing.sql`](supabase/migrations/20261113000000_billing.sql) (assinaturas e teste grátis; inofensiva enquanto `BILLING_ENABLED=false`).
+   Em seguida, execute também [`20261115000000_farm_management.sql`](supabase/migrations/20261115000000_farm_management.sql) (gestão da propriedade) e [`20261113000000_billing.sql`](supabase/migrations/20261113000000_billing.sql) (assinaturas e teste grátis; inofensiva enquanto `BILLING_ENABLED=false`).
 3. **Configure a autenticação** (*Authentication › URL Configuration*):
    - *Site URL*: a URL do app (ex.: `http://localhost:3000`)
    - *Redirect URLs*: `http://localhost:3000/auth/callback` e a URL de produção equivalente
@@ -60,6 +61,7 @@ Pré-requisitos: Node.js 20.9+ e um projeto no [Supabase](https://supabase.com).
 ### Recursos opcionais
 
 - **Busca em fontes oficiais** (`AI_WEB_SEARCH=true`): a ferramenta de busca na web precisa estar habilitada pelo administrador no Console da Anthropic. As buscas ficam restritas a `embrapa.br`, `gov.br`, `scielo.br` e universidades públicas (lista em `src/lib/ai/assistant.ts`). Há custo por busca.
+- **Clima comercial**: a Open-Meteo é gratuita só para uso não comercial; com assinaturas pagas, contrate o plano deles e informe `OPEN_METEO_API_KEY` (veja `.env.example`).
 - **Voz no servidor**: defina `ELEVENLABS_API_KEY` e `ELEVENLABS_VOICE_ID` (ID de uma voz da sua conta). Sem eles, o app usa o reconhecimento e a síntese de voz do próprio navegador quando disponíveis; se nenhum existir, o botão de microfone não aparece.
 - **Base de conhecimento**: adicione publicações oficiais em `knowledge/` e rode `npm run kb:ingest` (precisa de `SUPABASE_SERVICE_ROLE_KEY`; com `VOYAGE_API_KEY` também grava embeddings). Veja [`knowledge/README.md`](knowledge/README.md).
 
@@ -71,6 +73,7 @@ Pré-requisitos: Node.js 20.9+ e um projeto no [Supabase](https://supabase.com).
 | `npm run build` / `npm start` | Build e execução de produção |
 | `npm run lint` | ESLint |
 | `npm run typecheck` | Gera tipos de rotas e roda o TypeScript |
+| `npm test` | Testes de cálculos, regras de assinatura e leitura das respostas da IA |
 | `npm run kb:ingest` | Ingere documentos de `knowledge/` na base de conhecimento |
 
 ## Deploy

@@ -54,7 +54,7 @@ export function PlansView({ currentPlan, checkoutLinks, defaultInterval, email }
           return (
             <li
               key={id}
-              className={`flex flex-col rounded-3xl border p-5 ${featured ? "border-brand bg-brand-soft/40 shadow-card" : "border-line bg-surface"}`}
+              className={`flex flex-col rounded-[28px] border p-5 ${featured ? "border-brand bg-brand-soft/40 shadow-card" : "border-line bg-surface"}`}
             >
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-semibold">{plan.name}</h3>
@@ -119,7 +119,7 @@ export function PlansView({ currentPlan, checkoutLinks, defaultInterval, email }
         })}
       </ul>
 
-      <p className="mt-5 rounded-2xl bg-wheat-soft p-3.5 text-sm">
+      <p className="mt-5 rounded-3xl bg-wheat-soft p-3.5 text-sm">
         No pagamento, use o <strong>mesmo e-mail da sua conta</strong> ({email}). É por ele que liberamos o seu plano.
       </p>
       <p className="mt-3 text-xs text-subtle">

@@ -35,7 +35,7 @@ export function PlanBanner({ access, usage }: { access: Access; usage: Usage }) 
   return (
     <Link
       href="/plano"
-      className="mt-5 flex items-center gap-3 rounded-2xl bg-brand-soft px-4 py-3 text-sm transition hover:brightness-[0.98]"
+      className="mt-5 flex items-center gap-3 rounded-3xl bg-brand-soft px-4 py-3 text-sm transition hover:brightness-[0.98]"
     >
       <Icon className="size-4 shrink-0 text-brand" aria-hidden />
       <span className="flex-1">{text}</span>

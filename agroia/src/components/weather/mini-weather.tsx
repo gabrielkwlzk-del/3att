@@ -8,7 +8,7 @@ import { WeatherIcon } from "./weather-icon";
 
 export function MiniWeather({ location }: { location: { lat: number; lon: number; label: string } | null }) {
   const state = useForecast(location);
-  const box = "block rounded-3xl border border-line bg-surface p-4 transition hover:border-brand/30 sm:p-5";
+  const box = "block rounded-[28px] border border-line bg-surface p-4 transition hover:border-brand/30 sm:p-5";
 
   if (!location) {
     return (
@@ -47,7 +47,7 @@ export function MiniWeather({ location }: { location: { lat: number; lon: number
           </div>
           {state.data.alerts[0] && (
             <p
-              className={`mt-3 flex items-center gap-1.5 rounded-xl px-2.5 py-1.5 text-xs font-medium ${
+              className={`mt-3 flex items-center gap-1.5 rounded-2xl px-2.5 py-1.5 text-xs font-medium ${
                 state.data.alerts[0].level === "alerta" ? "bg-danger-soft text-danger" : "bg-warning-soft text-warning"
               }`}
             >
@@ -60,7 +60,7 @@ export function MiniWeather({ location }: { location: { lat: number; lon: number
           <CloudOff className="size-4" aria-hidden /> {state.message}
         </p>
       ) : (
-        <div className="mt-3 h-14 animate-pulse rounded-2xl bg-surface-2" aria-label="Carregando previsão" />
+        <div className="mt-3 h-14 animate-pulse rounded-3xl bg-surface-2" aria-label="Carregando previsão" />
       )}
     </Link>
   );

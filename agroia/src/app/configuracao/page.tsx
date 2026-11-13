@@ -22,7 +22,7 @@ export default function SetupPage() {
           : "Esta instalação da AgroIA ainda não tem as variáveis de ambiente obrigatórias."}
       </p>
       <ol className="mt-6 space-y-3 text-sm">
-        <li className="rounded-2xl border border-line bg-surface p-4">
+        <li className="rounded-3xl border border-line bg-surface p-4">
           1. Copie <code className="font-mono">.env.example</code> para <code className="font-mono">.env.local</code> e preencha:
           <ul className="mt-2 space-y-1">
             {REQUIRED.map(([name, desc]) => (
@@ -32,10 +32,10 @@ export default function SetupPage() {
             ))}
           </ul>
         </li>
-        <li className="rounded-2xl border border-line bg-surface p-4">
+        <li className="rounded-3xl border border-line bg-surface p-4">
           2. Rode a migração <code className="font-mono">supabase/migrations/…_init.sql</code> no SQL Editor do Supabase.
         </li>
-        <li className="rounded-2xl border border-line bg-surface p-4">3. Reinicie o servidor. Detalhes no README.md.</li>
+        <li className="rounded-3xl border border-line bg-surface p-4">3. Reinicie o servidor. Detalhes no README.md.</li>
       </ol>
     </div>
   );

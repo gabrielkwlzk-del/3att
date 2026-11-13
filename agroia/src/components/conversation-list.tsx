@@ -31,7 +31,7 @@ export function ConversationList({ initial }: { initial: ConversationRow[] }) {
 
   if (!items.length) {
     return (
-      <div className="mt-10 rounded-3xl border border-dashed border-line p-8 text-center">
+      <div className="mt-10 rounded-[28px] border border-dashed border-line p-8 text-center">
         <MessageSquareText className="mx-auto size-8 text-subtle" aria-hidden />
         <p className="mt-3 font-medium">Nenhuma conversa ainda</p>
         <p className="mt-1 text-sm text-muted">Faça sua primeira pergunta para a AgroIA.</p>
@@ -42,11 +42,11 @@ export function ConversationList({ initial }: { initial: ConversationRow[] }) {
   return (
     <>
       {error && (
-        <p role="alert" className="mt-4 rounded-2xl bg-danger-soft px-4 py-2.5 text-sm text-danger">
+        <p role="alert" className="mt-4 rounded-3xl bg-danger-soft px-4 py-2.5 text-sm text-danger">
           {error}
         </p>
       )}
-      <ul className="mt-6 divide-y divide-line overflow-hidden rounded-3xl border border-line bg-surface">
+      <ul className="mt-6 divide-y divide-line overflow-hidden rounded-[28px] border border-line bg-surface">
         {items.map((c) => (
           <li key={c.id} className="flex items-center">
             <Link href={`/chat/${c.id}`} className="flex min-w-0 flex-1 items-center gap-3 px-4 py-3.5 transition hover:bg-surface-2">

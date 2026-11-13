@@ -162,7 +162,7 @@ export function Composer({
       {error && (
         <div
           role="alert"
-          className="mb-2 flex items-start gap-2 rounded-2xl bg-danger-soft px-3.5 py-2.5 text-sm text-danger animate-pop"
+          className="mb-2 flex items-start gap-2 rounded-3xl bg-danger-soft px-3.5 py-2.5 text-sm text-danger animate-pop"
         >
           <span className="flex-1">{error}</span>
           <button type="button" onClick={() => setError(null)} aria-label="Fechar aviso" className="-m-1 p-1">
@@ -177,7 +177,7 @@ export function Composer({
             {images.map((img) => (
               <div key={img.id} className="relative shrink-0 animate-pop">
                 {/* eslint-disable-next-line @next/next/no-img-element -- prévia local (blob:) */}
-                <img src={img.previewUrl} alt="Foto selecionada" className="size-16 rounded-xl object-cover" />
+                <img src={img.previewUrl} alt="Foto selecionada" className="size-16 rounded-2xl object-cover" />
                 <button
                   type="button"
                   onClick={() => removeImage(img.id)}

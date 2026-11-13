@@ -292,7 +292,7 @@ export function ChatView({
 
       <div className="border-t border-line/70 bg-bg/90 px-3 pt-3 pb-3 backdrop-blur sm:px-6 pb-safe">
         {banner && (
-          <div role="alert" className="mx-auto mb-2 flex max-w-3xl items-start gap-2 rounded-2xl bg-warning-soft px-3.5 py-2.5 text-sm text-warning">
+          <div role="alert" className="mx-auto mb-2 flex max-w-3xl items-start gap-2 rounded-3xl bg-warning-soft px-3.5 py-2.5 text-sm text-warning">
             <Info className="mt-0.5 size-4 shrink-0" aria-hidden />
             <span className="flex-1">{banner}</span>
             {upgradeUrl && (
@@ -342,7 +342,7 @@ function EmptyState({
       </div>
 
       {topic === "diagnostico" && (
-        <div className="mt-5 rounded-3xl border border-line bg-surface p-4 sm:p-5">
+        <div className="mt-5 rounded-[28px] border border-line bg-surface p-4 sm:p-5">
           <p className="flex items-center gap-2 font-medium">
             <Camera className="size-5 text-leaf" aria-hidden /> Dicas para uma boa análise por foto
           </p>
@@ -360,7 +360,7 @@ function EmptyState({
       {topic === "clima" && (
         <Link
           href="/clima"
-          className="mt-5 flex items-center gap-3 rounded-3xl border border-line bg-surface p-4 transition hover:border-brand/40"
+          className="mt-5 flex items-center gap-3 rounded-[28px] border border-line bg-surface p-4 transition hover:border-brand/40"
         >
           <CloudSun className="size-6 text-wheat" aria-hidden />
           <span className="text-sm">
@@ -373,7 +373,7 @@ function EmptyState({
       {!hasProperty && (
         <Link
           href="/propriedade"
-          className="mt-3 flex items-center gap-3 rounded-3xl bg-wheat-soft p-4 text-sm transition hover:brightness-[0.98]"
+          className="mt-3 flex items-center gap-3 rounded-[28px] bg-wheat-soft p-4 text-sm transition hover:brightness-[0.98]"
         >
           <Sprout className="size-5 shrink-0 text-wheat" aria-hidden />
           <span>
@@ -391,7 +391,7 @@ function EmptyState({
             type="button"
             disabled={disabled}
             onClick={() => onPick(q)}
-            className="rounded-2xl border border-line bg-surface px-4 py-3 text-left text-[15px] transition hover:border-brand/40 hover:bg-brand-soft/50 active:scale-[0.99] disabled:opacity-50"
+            className="rounded-3xl border border-line bg-surface px-4 py-3 text-left text-[15px] transition hover:border-brand/40 hover:bg-brand-soft/50 active:scale-[0.99] disabled:opacity-50"
           >
             {q}
           </button>

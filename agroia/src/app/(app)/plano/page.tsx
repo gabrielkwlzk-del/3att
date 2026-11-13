@@ -41,7 +41,7 @@ export default async function PlanPage() {
     return (
       <div className="mx-auto w-full max-w-3xl px-4 pt-6 pb-10 sm:px-6 sm:pt-10">
         <h1 className="text-2xl font-semibold tracking-tight">Meu plano</h1>
-        <p className="mt-3 rounded-3xl border border-line bg-surface p-5 text-muted">
+        <p className="mt-3 rounded-[28px] border border-line bg-surface p-5 text-muted">
           As assinaturas ainda não estão ativas nesta instalação. Enquanto isso, o uso do assistente não tem limite.
         </p>
       </div>
@@ -58,7 +58,7 @@ export default async function PlanPage() {
     <div className="mx-auto w-full max-w-4xl px-4 pt-6 pb-10 sm:px-6 sm:pt-10">
       <h1 className="text-2xl font-semibold tracking-tight">Meu plano</h1>
 
-      <section className="mt-5 rounded-3xl border border-line bg-surface p-5" aria-labelledby="situacao">
+      <section className="mt-5 rounded-[28px] border border-line bg-surface p-5" aria-labelledby="situacao">
         <h2 id="situacao" className="text-lg font-semibold">{h.title}</h2>
         <p className="mt-1 text-sm text-muted">{h.text}</p>
         <div className="mt-5 grid gap-4 sm:grid-cols-2">

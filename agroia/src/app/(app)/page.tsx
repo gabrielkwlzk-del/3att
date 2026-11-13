@@ -94,9 +94,9 @@ export default async function HomePage() {
             >
               <Link
                 href={href}
-                className="group flex min-h-[76px] items-center gap-3.5 rounded-3xl border border-line bg-surface p-3.5 pr-3 shadow-card transition hover:-translate-y-0.5 hover:border-brand/30 active:scale-[0.99]"
+                className="group flex min-h-[76px] items-center gap-3.5 rounded-[28px] border border-line bg-surface p-3.5 pr-3 shadow-card transition hover:-translate-y-0.5 hover:border-brand/30 active:scale-[0.99]"
               >
-                <span className={`grid size-12 shrink-0 place-items-center rounded-2xl ${tone}`}>
+                <span className={`grid size-12 shrink-0 place-items-center rounded-3xl ${tone}`}>
                   <Icon className="size-6" aria-hidden />
                 </span>
                 <span className="min-w-0 flex-1">
@@ -111,7 +111,7 @@ export default async function HomePage() {
       </section>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
-        <section aria-labelledby="propriedade-titulo" className="rounded-3xl border border-line bg-surface p-4 sm:p-5">
+        <section aria-labelledby="propriedade-titulo" className="rounded-[28px] border border-line bg-surface p-4 sm:p-5">
           <div className="flex items-center justify-between">
             <h2 id="propriedade-titulo" className="text-sm font-medium text-muted">
               Sua propriedade
@@ -172,7 +172,7 @@ export default async function HomePage() {
               Ver todas
             </Link>
           </div>
-          <ul className="divide-y divide-line overflow-hidden rounded-3xl border border-line bg-surface">
+          <ul className="divide-y divide-line overflow-hidden rounded-[28px] border border-line bg-surface">
             {conversations.map((c) => (
               <li key={c.id}>
                 <Link href={`/chat/${c.id}`} className="flex items-center gap-3 px-4 py-3.5 transition hover:bg-surface-2">

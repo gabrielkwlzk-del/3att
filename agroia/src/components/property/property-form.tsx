@@ -13,7 +13,7 @@ import {
 import { deleteProperty, saveProperty, type SaveState } from "@/app/(app)/propriedade/actions";
 
 const field =
-  "h-12 w-full rounded-2xl border border-line bg-surface px-3.5 text-base outline-none transition focus:border-brand/60 aria-[invalid=true]:border-danger";
+  "h-12 w-full rounded-3xl border border-line bg-surface px-3.5 text-base outline-none transition focus:border-brand/60 aria-[invalid=true]:border-danger";
 const labelClass = "mb-1.5 block text-sm font-medium";
 
 export function PropertyForm({ property }: { property: PropertyRow | null }) {
@@ -160,7 +160,7 @@ export function PropertyForm({ property }: { property: PropertyRow | null }) {
                     defaultChecked={(property?.activity ?? "agricultura") === a.value}
                     className="peer sr-only"
                   />
-                  <span className="flex h-12 items-center justify-center rounded-2xl border border-line bg-surface px-2 text-center text-sm leading-tight transition peer-checked:border-brand peer-checked:bg-brand-soft peer-checked:font-medium peer-checked:text-brand peer-focus-visible:ring-2 peer-focus-visible:ring-brand/40">
+                  <span className="flex h-12 items-center justify-center rounded-3xl border border-line bg-surface px-2 text-center text-sm leading-tight transition peer-checked:border-brand peer-checked:bg-brand-soft peer-checked:font-medium peer-checked:text-brand peer-focus-visible:ring-2 peer-focus-visible:ring-brand/40">
                     {a.label}
                   </span>
                 </label>
@@ -222,7 +222,7 @@ export function PropertyForm({ property }: { property: PropertyRow | null }) {
                 return (
                   <div
                     key={s.value}
-                    className={`flex items-center gap-2 rounded-2xl border px-3 py-2 transition ${checked ? "border-brand/50 bg-brand-soft/60" : "border-line bg-surface"}`}
+                    className={`flex items-center gap-2 rounded-3xl border px-3 py-2 transition ${checked ? "border-brand/50 bg-brand-soft/60" : "border-line bg-surface"}`}
                   >
                     <label className="flex min-h-9 flex-1 cursor-pointer items-center gap-2.5 text-sm">
                       <input
@@ -251,7 +251,7 @@ export function PropertyForm({ property }: { property: PropertyRow | null }) {
                           inputMode="numeric"
                           defaultValue={animalQty(s.value)}
                           placeholder="Qtd."
-                          className="h-9 w-20 rounded-xl border border-line bg-surface px-2 text-sm outline-none focus:border-brand/60"
+                          className="h-9 w-20 rounded-2xl border border-line bg-surface px-2 text-sm outline-none focus:border-brand/60"
                         />
                       </>
                     )}
@@ -269,13 +269,13 @@ export function PropertyForm({ property }: { property: PropertyRow | null }) {
               rows={3}
               maxLength={1000}
               defaultValue={property?.notes ?? ""}
-              className="w-full rounded-2xl border border-line bg-surface px-3.5 py-3 text-base outline-none focus:border-brand/60"
+              className="w-full rounded-3xl border border-line bg-surface px-3.5 py-3 text-base outline-none focus:border-brand/60"
               placeholder="Ex.: solo arenoso, irrigação por gotejamento, plantio direto há 8 anos"
             />
           </div>
         </fieldset>
 
-        <fieldset className="rounded-3xl border border-line bg-surface p-4 sm:p-5">
+        <fieldset className="rounded-[28px] border border-line bg-surface p-4 sm:p-5">
           <legend className="sr-only">Consentimento</legend>
           <label className="flex cursor-pointer items-start gap-3">
             <input type="checkbox" name="share_with_ai" defaultChecked={property?.share_with_ai ?? false} className="peer sr-only" />
@@ -308,7 +308,7 @@ export function PropertyForm({ property }: { property: PropertyRow | null }) {
       </form>
 
       {property && (
-        <section className="mt-10 rounded-3xl border border-danger/30 p-4 sm:p-5" aria-labelledby="excluir-dados">
+        <section className="mt-10 rounded-[28px] border border-danger/30 p-4 sm:p-5" aria-labelledby="excluir-dados">
           <h2 id="excluir-dados" className="font-medium">Excluir dados da propriedade</h2>
           <p className="mt-1 text-sm text-muted">Remove o cadastro da propriedade. Suas conversas continuam salvas.</p>
           <button

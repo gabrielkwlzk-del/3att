@@ -60,12 +60,12 @@ export function MessageItem({
                     key={a.path}
                     src={a.url}
                     alt="Foto enviada"
-                    className="size-36 rounded-2xl border border-line object-cover sm:size-44"
+                    className="size-36 rounded-3xl border border-line object-cover sm:size-44"
                   />
                 ) : (
                   <div
                     key={a.path}
-                    className="grid size-36 place-items-center rounded-2xl border border-line bg-surface-2 text-xs text-muted"
+                    className="grid size-36 place-items-center rounded-3xl border border-line bg-surface-2 text-xs text-muted"
                   >
                     Foto
                   </div>
@@ -74,7 +74,7 @@ export function MessageItem({
             </div>
           )}
           {message.content && (
-            <div className="rounded-3xl rounded-br-lg bg-brand px-4 py-2.5 text-[15px] leading-relaxed whitespace-pre-wrap text-brand-fg sm:text-base">
+            <div className="rounded-[28px] rounded-br-lg bg-brand px-4 py-2.5 text-[15px] leading-relaxed whitespace-pre-wrap text-brand-fg sm:text-base">
               {message.content}
             </div>
           )}
@@ -141,7 +141,7 @@ function SourceList({ sources }: { sources: Source[] }) {
   const [open, setOpen] = useState(false);
   const anyCited = sources.some((s) => s.cited);
   return (
-    <div className="mt-3 rounded-2xl border border-line bg-surface">
+    <div className="mt-3 rounded-3xl border border-line bg-surface">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}

@@ -81,7 +81,7 @@ export function AppShell({
         <div className="px-3">
           <Link
             href="/chat"
-            className="flex h-11 items-center justify-center gap-2 rounded-2xl bg-brand text-sm font-medium text-brand-fg transition hover:bg-brand-strong active:scale-[0.98]"
+            className="flex h-11 items-center justify-center gap-2 rounded-3xl bg-brand text-sm font-medium text-brand-fg transition hover:bg-brand-strong active:scale-[0.98]"
           >
             <Plus className="size-4" aria-hidden /> Nova conversa
           </Link>
@@ -91,7 +91,7 @@ export function AppShell({
             <Link
               key={href}
               href={href}
-              className={`flex h-10 items-center gap-3 rounded-xl px-3 text-sm transition ${
+              className={`flex h-10 items-center gap-3 rounded-2xl px-3 text-sm transition ${
                 isActive(pathname, href) ? "bg-brand-soft font-medium text-brand" : "text-muted hover:bg-surface-2 hover:text-fg"
               }`}
               aria-current={isActive(pathname, href) ? "page" : undefined}
@@ -109,7 +109,7 @@ export function AppShell({
                   <li key={c.id}>
                     <Link
                       href={`/chat/${c.id}`}
-                      className={`flex h-9 items-center gap-2.5 rounded-xl px-3 text-sm transition ${
+                      className={`flex h-9 items-center gap-2.5 rounded-2xl px-3 text-sm transition ${
                         pathname === `/chat/${c.id}` ? "bg-surface-2 text-fg" : "text-muted hover:bg-surface-2 hover:text-fg"
                       }`}
                     >
@@ -131,7 +131,7 @@ export function AppShell({
           <form action="/auth/sair" method="post">
             <button
               type="submit"
-              className="grid size-9 place-items-center rounded-xl text-muted transition hover:bg-surface-2 hover:text-fg"
+              className="grid size-9 place-items-center rounded-2xl text-muted transition hover:bg-surface-2 hover:text-fg"
               aria-label="Sair da conta"
               title="Sair"
             >
@@ -261,7 +261,7 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={cycle}
-      className="grid size-9 place-items-center rounded-xl text-muted transition hover:bg-surface-2 hover:text-fg"
+      className="grid size-9 place-items-center rounded-2xl text-muted transition hover:bg-surface-2 hover:text-fg"
       aria-label={`${label} (toque para alternar)`}
       title={label}
     >

@@ -95,7 +95,7 @@ export function LivestockAssistant({ defaultSpecies }: { defaultSpecies: Species
         </div>
       </div>
 
-      <section aria-labelledby="perguntas-animais" className="rounded-3xl border border-line bg-surface p-2" role="tabpanel">
+      <section aria-labelledby="perguntas-animais" className="rounded-[28px] border border-line bg-surface p-2" role="tabpanel">
         <h2 id="perguntas-animais" className="px-3 pt-3 pb-1 text-sm font-medium text-muted">
           Perguntas frequentes · {current.label}
         </h2>
@@ -104,7 +104,7 @@ export function LivestockAssistant({ defaultSpecies }: { defaultSpecies: Species
             <li key={q}>
               <Link
                 href={`/chat?topico=pecuaria&q=${encodeURIComponent(`[${current.label}] ${q}`)}`}
-                className="flex items-center gap-3 rounded-2xl px-3 py-3 text-[15px] transition hover:bg-surface-2"
+                className="flex items-center gap-3 rounded-3xl px-3 py-3 text-[15px] transition hover:bg-surface-2"
               >
                 <span className="flex-1">{q}</span>
                 <ChevronRight className="size-4 shrink-0 text-subtle" aria-hidden />
@@ -114,14 +114,14 @@ export function LivestockAssistant({ defaultSpecies }: { defaultSpecies: Species
         </ul>
         <Link
           href="/chat?topico=pecuaria"
-          className="m-1 mt-2 flex h-12 items-center justify-center gap-2 rounded-2xl bg-brand text-sm font-medium text-brand-fg transition hover:bg-brand-strong"
+          className="m-1 mt-2 flex h-12 items-center justify-center gap-2 rounded-3xl bg-brand text-sm font-medium text-brand-fg transition hover:bg-brand-strong"
         >
           <MessageCirclePlus className="size-4" aria-hidden /> Fazer outra pergunta
         </Link>
       </section>
 
       <div className="grid gap-3 sm:grid-cols-2">
-        <div className="rounded-3xl bg-info-soft p-4 text-sm">
+        <div className="rounded-[28px] bg-info-soft p-4 text-sm">
           <p className="flex items-center gap-2 font-semibold text-info">
             <Stethoscope className="size-4" aria-hidden /> Não substitui o veterinário
           </p>
@@ -130,7 +130,7 @@ export function LivestockAssistant({ defaultSpecies }: { defaultSpecies: Species
             ser definidos por um médico-veterinário.
           </p>
         </div>
-        <div className="rounded-3xl bg-danger-soft p-4 text-sm">
+        <div className="rounded-[28px] bg-danger-soft p-4 text-sm">
           <p className="flex items-center gap-2 font-semibold text-danger">
             <ShieldAlert className="size-4" aria-hidden /> Suspeita de doença grave?
           </p>

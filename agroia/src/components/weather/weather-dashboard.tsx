@@ -102,7 +102,7 @@ export function WeatherDashboard({
 
   return (
     <div className="space-y-4">
-      <div className="rounded-3xl border border-line bg-surface p-3.5 sm:p-4">
+      <div className="rounded-[28px] border border-line bg-surface p-3.5 sm:p-4">
         {editing ? (
           <LocationSearch
             onFound={(loc) => {
@@ -116,7 +116,7 @@ export function WeatherDashboard({
           />
         ) : (
           <div className="flex items-center gap-3">
-            <span className="grid size-10 place-items-center rounded-2xl bg-brand-soft text-brand">
+            <span className="grid size-10 place-items-center rounded-3xl bg-brand-soft text-brand">
               <MapPin className="size-5" aria-hidden />
             </span>
             <div className="min-w-0 flex-1">
@@ -137,7 +137,7 @@ export function WeatherDashboard({
 
       {state.status === "loading" && <ForecastSkeleton />}
       {state.status === "error" && (
-        <div className="flex items-start gap-3 rounded-3xl border border-line bg-surface p-5" role="alert">
+        <div className="flex items-start gap-3 rounded-[28px] border border-line bg-surface p-5" role="alert">
           <CloudOff className="mt-0.5 size-5 shrink-0 text-muted" aria-hidden />
           <div>
             <p className="font-medium">Previsão indisponível</p>
@@ -186,7 +186,7 @@ function LocationSearch({
     }
   };
 
-  const field = "h-12 rounded-2xl border border-line bg-bg px-3 text-base outline-none focus:border-brand/60";
+  const field = "h-12 rounded-3xl border border-line bg-bg px-3 text-base outline-none focus:border-brand/60";
   return (
     <form onSubmit={search} className="space-y-3">
       <p className="font-medium">Onde fica a lavoura?</p>
@@ -241,8 +241,8 @@ function LocationSearch({
 function ForecastSkeleton() {
   return (
     <div className="space-y-4" aria-label="Carregando previsão" role="status">
-      <div className="h-40 animate-pulse rounded-3xl bg-surface-2" />
-      <div className="h-72 animate-pulse rounded-3xl bg-surface-2" />
+      <div className="h-40 animate-pulse rounded-[28px] bg-surface-2" />
+      <div className="h-72 animate-pulse rounded-[28px] bg-surface-2" />
     </div>
   );
 }
@@ -262,7 +262,7 @@ function ForecastView({ data, askQuestion }: { data: Forecast; askQuestion: stri
 
   return (
     <>
-      <section className="overflow-hidden rounded-3xl border border-line bg-surface" aria-labelledby="agora">
+      <section className="overflow-hidden rounded-[28px] border border-line bg-surface" aria-labelledby="agora">
         <div className="bg-gradient-to-br from-brand-soft via-surface to-wheat-soft/60 p-5">
           <h2 id="agora" className="text-sm font-medium text-muted">
             Agora · {formatLocalHour(data.current.time).split(" ")[1]}
@@ -296,12 +296,12 @@ function ForecastView({ data, askQuestion }: { data: Forecast; askQuestion: stri
       <section aria-labelledby="alertas" className="space-y-2">
         <h2 id="alertas" className="px-1 text-sm font-medium text-muted">Alertas para os próximos dias</h2>
         {data.alerts.length === 0 ? (
-          <p className="rounded-3xl border border-line bg-surface p-4 text-sm text-muted">
+          <p className="rounded-[28px] border border-line bg-surface p-4 text-sm text-muted">
             Nenhum risco de geada, chuva intensa, vento forte ou calor extremo na previsão atual.
           </p>
         ) : (
           data.alerts.map((a, i) => (
-            <div key={`${a.kind}-${i}`} className={`rounded-3xl border p-4 ${alertStyle[a.level]}`}>
+            <div key={`${a.kind}-${i}`} className={`rounded-[28px] border p-4 ${alertStyle[a.level]}`}>
               <p className="flex items-center gap-2 font-semibold">
                 {a.level === "info" ? <Info className="size-4" aria-hidden /> : <AlertTriangle className="size-4" aria-hidden />}
                 {a.title}
@@ -320,7 +320,7 @@ function ForecastView({ data, askQuestion }: { data: Forecast; askQuestion: stri
       {askQuestion && (
         <Link
           href={`/chat?topico=clima&q=${encodeURIComponent(askQuestion)}`}
-          className="flex items-center gap-3 rounded-3xl bg-brand p-4 text-brand-fg shadow-card transition hover:bg-brand-strong active:scale-[0.99]"
+          className="flex items-center gap-3 rounded-[28px] bg-brand p-4 text-brand-fg shadow-card transition hover:bg-brand-strong active:scale-[0.99]"
         >
           <Sparkles className="size-5 shrink-0" aria-hidden />
           <span className="flex-1">
@@ -330,7 +330,7 @@ function ForecastView({ data, askQuestion }: { data: Forecast; askQuestion: stri
         </Link>
       )}
 
-      <section className="rounded-3xl border border-line bg-surface" aria-labelledby="proximos-dias">
+      <section className="rounded-[28px] border border-line bg-surface" aria-labelledby="proximos-dias">
         <h2 id="proximos-dias" className="px-4 pt-4 text-sm font-medium text-muted">Próximos {data.daily.length} dias</h2>
         <ul className="divide-y divide-line">
           {data.daily.map((d) => {
@@ -370,14 +370,14 @@ function ForecastView({ data, askQuestion }: { data: Forecast; askQuestion: stri
         </ul>
       </section>
 
-      <section className="rounded-3xl border border-line bg-surface p-4" aria-labelledby="pulverizacao">
+      <section className="rounded-[28px] border border-line bg-surface p-4" aria-labelledby="pulverizacao">
         <h2 id="pulverizacao" className="flex items-center gap-2 font-medium">
           <SprayCan className="size-5 text-leaf" aria-hidden /> Janelas para pulverização (48 h)
         </h2>
         {data.sprayWindows.length ? (
           <ul className="mt-3 flex flex-wrap gap-2">
             {data.sprayWindows.map((w) => (
-              <li key={w.start} className="rounded-2xl bg-brand-soft px-3 py-2 text-sm text-brand">
+              <li key={w.start} className="rounded-3xl bg-brand-soft px-3 py-2 text-sm text-brand">
                 <span className="font-medium">{formatLocalHour(w.start)}</span> até {formatLocalHour(w.end).split(" ")[1]} ·{" "}
                 {w.hours} h
               </li>
